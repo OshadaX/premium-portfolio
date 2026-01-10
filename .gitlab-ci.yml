@@ -1,0 +1,51 @@
+# GitLab CI/CD Pipeline for React + TypeScript + Vite
+
+image: node:18
+
+# Cache node_modules for faster builds
+cache:
+  paths:
+    - node_modules/
+
+# Pipeline stages
+stages:
+  - install
+  - build
+  - deploy
+
+# Install dependencies
+install_dependencies:
+  stage: install
+  script:
+    - npm ci
+  artifacts:
+    paths:
+      - node_modules/
+    expire_in: 1 day
+
+# Build the project
+build_project:
+  stage: build
+  dependencies:
+    - install_dependencies
+  script:
+    - npm run build
+  artifacts:
+    paths:
+      - dist/
+    expire_in: 1 week
+
+# Deploy to GitLab Pages
+pages:
+  stage: deploy
+  dependencies:
+    - build_project
+  script:
+    - mkdir .public
+    - cp -r dist/* .public
+    - mv .public public
+  artifacts:
+    paths:
+      - public
+  rules:
+    - if: $CI_COMMIT_BRANCH == "main"
