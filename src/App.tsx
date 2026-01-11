@@ -1,5 +1,6 @@
 import Navigation from './components/shared/Navigation';
 import Hero from './components/Hero/Hero';
+import NetworkSkills from './components/Skills/NetworkSkills';
 
 function App() {
     return (
@@ -11,18 +12,7 @@ function App() {
 
             <main className="relative z-10">
                 <Hero />
-
-                {/* Future sections */}
-                <section className="h-screen flex items-center justify-center border-t border-green-900/30">
-                    <div className="space-y-4 text-center">
-                        <h2 className="text-4xl tracking-tighter text-green-500">
-                            [SYSTEM_STATUS: READY]
-                        </h2>
-                        <p className="text-green-800 tracking-[0.5em] uppercase text-xs">
-                            More data sequences coming soon
-                        </p>
-                    </div>
-                </section>
+                <NetworkSkills />
             </main>
         </div>
     );

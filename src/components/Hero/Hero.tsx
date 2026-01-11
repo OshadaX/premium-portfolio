@@ -46,7 +46,7 @@ const Hero: React.FC = () => {
                             transition={{ delay: 0.5, duration: 1 }}
                             className="text-green-800 font-mono text-lg lg:text-2xl tracking-[0.2em] font-light"
                         >
-                            {">"} FULL_STACK_ENGINEER // CLOUD_ARCHITECT
+                            {">"} FULL_STACK_ENGINEER
                         </motion.h2>
                     </div>
 
