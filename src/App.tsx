@@ -1,8 +1,62 @@
+import { useRef, useEffect } from 'react';
 import Navigation from './components/shared/Navigation';
 import Hero from './components/Hero/Hero';
-import NetworkSkills from './components/Skills/NetworkSkills';
+import About from './components/About/About';
+import Skills from './components/Skills/Skills';
+import Projects from './components/Projects/Projects';
+import Contact from './components/Contact/Contact';
+import Experience from './components/Experience/Experience';
 
 function App() {
+    const heroRef = useRef<HTMLDivElement>(null);
+    const aboutRef = useRef<HTMLElement>(null);
+    const isScrollingRef = useRef(false);
+
+    useEffect(() => {
+        const heroElement = heroRef.current;
+        if (!heroElement) return;
+
+        const handleWheel = (e: WheelEvent) => {
+            // Only capture scroll down when at the top of the page (Hero)
+            if (window.scrollY < 50 && e.deltaY > 0 && !isScrollingRef.current) {
+                e.preventDefault();
+                isScrollingRef.current = true;
+
+                aboutRef.current?.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+
+                // Reset lock after animation
+                setTimeout(() => {
+                    isScrollingRef.current = false;
+                }, 1000);
+            }
+        };
+
+        const handleKeyDown = (e: KeyboardEvent) => {
+            if (window.scrollY < 50 && (e.key === 'ArrowDown' || e.key === ' ') && !isScrollingRef.current) {
+                e.preventDefault();
+                isScrollingRef.current = true;
+                aboutRef.current?.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+                setTimeout(() => {
+                    isScrollingRef.current = false;
+                }, 1000);
+            }
+        };
+
+        window.addEventListener('wheel', handleWheel, { passive: false });
+        window.addEventListener('keydown', handleKeyDown);
+
+        return () => {
+            window.removeEventListener('wheel', handleWheel);
+            window.removeEventListener('keydown', handleKeyDown);
+        };
+    }, []);
+
     return (
         <div className="min-h-screen bg-black text-green-500 font-mono relative overflow-hidden selection:bg-green-500 selection:text-black">
             {/* CRT Overlay Effects */}
@@ -11,8 +65,18 @@ function App() {
             <Navigation />
 
             <main className="relative z-10">
-                <Hero />
-                <NetworkSkills />
+                <div ref={heroRef}>
+                    <Hero />
+                </div>
+
+                <section ref={aboutRef}>
+                    <About />
+                </section>
+
+                <Skills />
+                <Projects />
+                <Experience />
+                <Contact />
             </main>
         </div>
     );
