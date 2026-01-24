@@ -1,0 +1,23 @@
+name: Node Application
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  buils-node:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: 20.x
+
+      - name: Install Dependancies
+        run: npm install
+
+      - name: Build
+        run: npm run build
