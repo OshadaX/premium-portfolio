@@ -8,24 +8,27 @@ export default {
   theme: {
     extend: {
       colors: {
-        primary: {
-          light: '#a78bfa',
-          DEFAULT: '#8b5cf6',
-          dark: '#7c3aed',
+        premium: {
+          light: '#f8f9fa',
+          dark: '#0a0a0a',
+          accent: '#c5a358', // Gold/Brass accent for a premium feel
+          gray: {
+            100: '#f1f1f1',
+            200: '#e2e2e2',
+            300: '#d4d4d4',
+            400: '#a3a3a3',
+            500: '#737373',
+            600: '#525252',
+            700: '#404040',
+            800: '#262626',
+            900: '#171717',
+          }
         },
-        dark: {
-          bg: '#0a0a0a',
-          card: '#1a1a1a',
-          border: '#2a2a2a',
-        },
-        light: {
-          bg: '#fafafa',
-          card: '#ffffff',
-          border: '#e5e5e5',
-        }
       },
       fontFamily: {
-        sans: ['Inter', 'sans-serif'],
+        sans: ['Outfit', 'Inter', 'sans-serif'],
+        serif: ['Playfair Display', 'serif'],
+        mono: ['Fira Code', 'monospace'],
       },
     },
   },

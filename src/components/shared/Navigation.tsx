@@ -1,67 +1,71 @@
-import { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
 
-export default function Navigation() {
-    const [isScrolled, setIsScrolled] = useState(false);
+const FlowerIcon = ({ className }: { className?: string }) => (
+    <svg viewBox="0 0 100 100" className={className} fill="currentColor">
+        <path d="M50 0 C54 30 70 46 100 50 C70 54 54 70 50 100 C46 70 30 54 0 50 C30 46 46 30 50 0" />
+        <path d="M50 0 C54 30 70 46 100 50 C70 54 54 70 50 100 C46 70 30 54 0 50 C30 46 46 30 50 0" transform="rotate(45 50 50)" />
+    </svg>
+);
 
-    useEffect(() => {
-        const handleScroll = () => {
-            setIsScrolled(window.scrollY > 50);
-        };
-        window.addEventListener('scroll', handleScroll);
-        return () => window.removeEventListener('scroll', handleScroll);
-    }, []);
+interface NavigationProps {
+    onNavigate: (sectionId: string) => void;
+}
 
+export default function Navigation({ onNavigate }: NavigationProps) {
     const navLinks = [
-        { name: 'ABOUT', href: '#about' },
-        { name: 'PROJECTS', href: '#projects' },
-        { name: 'SKILLS', href: '#skills' },
-        { name: 'CONTACT', href: '#contact' },
-        { name: 'EXPERIENCE', href: '#experience' },
+        { name: 'work', id: 'experience' },
+        { name: 'about', id: 'about' },
+        { name: 'blog', id: '#' },
+        { name: 'contact', id: 'contact' },
     ];
 
+    const handleClick = (e: React.MouseEvent, id: string) => {
+        e.preventDefault();
+        if (id !== '#') {
+            onNavigate(id);
+        }
+    };
+
     return (
-        <nav
-            className={`fixed top-0 z-50 w-full transition-all duration-500 ${isScrolled
-                ? 'bg-black/90 backdrop-blur-md border-b border-green-500/20'
-                : 'bg-transparent'
-                }`}
-        >
-            <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 font-mono">
-                {/* Logo / Terminal Tag */}
-                <a
-                    href="#home"
-                    className="group flex items-center gap-2 text-xl font-bold"
-                >
-                    <span className="text-green-500">{">"}</span>
-                    <span className="text-white tracking-widest group-hover:text-green-400 transition-colors">
-                        NAVINDRA_OSHADA
-                    </span>
-                </a>
+        <nav className="fixed top-0 left-0 w-full z-50 pointer-events-none">
+            {/* Main Flex Container (matches "nav") */}
+            <div className="mx-auto flex w-full max-w-[1400px] items-start justify-between p-8 md:p-12 lg:p-16">
 
-                {/* Navigation Links */}
-                <div className="hidden items-center gap-10 md:flex">
-                    {navLinks.map((link) => (
-                        <a
-                            key={link.name}
-                            href={link.href}
-                            className="relative text-[0.8rem] tracking-widest text-green-700 transition-all duration-300 hover:text-green-400 hover:scale-105 group"
-                        >
-                            <span className="opacity-0 group-hover:opacity-100 transition-opacity mr-1">[</span>
-                            {link.name}
-                            <span className="opacity-0 group-hover:opacity-100 transition-opacity ml-1">]</span>
+                {/* Left Column: Logo (matches "col" -> "nav-logo") */}
+                <div className="flex-shrink-0 pointer-events-auto">
+                    <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }} // Adjusted to 1 for better visibility
+                        transition={{ duration: 1, delay: 0.5 }}
+                    >
+                        <a href="/" className="inline-block group">
+                            <FlowerIcon className="w-8 h-8 text-black transition-transform duration-700 group-hover:rotate-180" />
                         </a>
-                    ))}
-
-                    <div className="h-4 w-[1px] bg-green-900/50 mx-2" />
-
-                    <div className="flex items-center gap-2 text-[0.7rem] text-green-900 px-3 py-1 border border-green-900/30 rounded bg-green-900/5">
-                        <span className="relative flex h-2 w-2">
-                            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-                            <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
-                        </span>
-                        SYNC_READY
-                    </div>
+                    </motion.div>
                 </div>
+
+                {/* Right Column: Nav Items (matches "col" -> "nav-items") */}
+                <div className="flex-shrink-0 pointer-events-auto">
+                    <motion.div
+                        initial={{ opacity: 0, x: 20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 1, delay: 0.8 }}
+                        className="flex flex-col items-end gap-1" // Gap-1 for tighter spacing like HTML
+                    >
+                        {navLinks.map((link) => (
+                            <div key={link.name} className="nav-item block">
+                                <a
+                                    href={`#${link.id}`}
+                                    onClick={(e) => handleClick(e, link.id)}
+                                    className="relative text-[0.9rem] md:text-[1rem] font-medium leading-none text-black/80 hover:text-black transition-colors duration-300 cursor-pointer"
+                                >
+                                    {link.name}
+                                </a>
+                            </div>
+                        ))}
+                    </motion.div>
+                </div>
+
             </div>
         </nav>
     );

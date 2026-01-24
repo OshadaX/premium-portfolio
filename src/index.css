@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@100;200;300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100;200;300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -6,9 +6,17 @@
 
 @layer base {
   body {
-    @apply bg-black text-green-500 font-mono;
-    -webkit-font-smoothing: initial;
-    -moz-osx-font-smoothing: initial;
+    @apply bg-premium-dark text-premium-light font-sans antialiased;
+    background-color: #0a0a0a;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-serif;
   }
 }
 
