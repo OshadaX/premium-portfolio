@@ -1,79 +1,84 @@
 import React from "react"
 import { motion } from "framer-motion"
-import TerminalBackground from "./TerminalBackground"
+
 
 const Hero: React.FC = () => {
     return (
-        <section className="relative min-h-screen overflow-hidden bg-black flex items-center justify-center">
+        <section className="relative min-h-screen flex flex-col pt-32 md:pt-40 px-8 md:px-12 lg:px-24 bg-[#fcfcfc] overflow-hidden">
+            {/* Overlay (from HTML) - kept for structure, unused for now */}
+            <div className="absolute inset-0 pointer-events-none z-0" />
 
-            {/* Immersive Terminal Background */}
-            <TerminalBackground />
+            {/* Counter (Keep existing or remove? HTML has a counter) */}
+            <motion.div
+                initial={{ opacity: 0, y: -20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, ease: "easeOut" }}
+                className="absolute top-8 left-8 md:left-12 lg:left-24"
+            >
+                <div className="text-[0.65rem] font-bold tracking-[0.2em] text-gray-400 select-none">
+                    <p>0</p>
+                </div>
+            </motion.div>
 
-            {/* Overlay Grid for more "tech" feel */}
-            <div className="absolute inset-0 bg-[linear-gradient(to_right,#00ff0005_1px,transparent_1px),linear-gradient(to_bottom,#00ff0005_1px,transparent_1px)] bg-[size:50px_50px] pointer-events-none" />
+            {/* Main Content Container */}
+            <div className="w-full max-w-[1400px] mx-auto z-10 flex-grow flex flex-col">
 
-            {/* Overlay Content - Centered for impact */}
-            <div className="relative z-10 w-full max-w-7xl px-6 text-center">
-                <div className="space-y-12 py-12 inline-block">
-                    <div className="space-y-6">
-                        <motion.div
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            transition={{ duration: 1 }}
-                            className="inline-block px-3 py-1 border border-green-500/30 bg-green-500/5 text-green-500 font-mono text-xs tracking-[0.4em] uppercase"
-                        >
-                            [ STATUS: ACTIVE_TERMINAL ]
-                        </motion.div>
-
-                        <motion.h1
-                            initial={{ opacity: 0, y: 30 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 1, ease: "easeOut" }}
-                            className="text-7xl lg:text-[11rem] font-bold tracking-tighter leading-none font-mono"
-                        >
-                            <span className="text-white brightness-125 drop-shadow-[0_0_10px_rgba(255,255,255,0.2)]">
-                                NAVINDRA
-                            </span>
-                            <br />
-                            <span className="text-green-500 drop-shadow-[0_0_25px_rgba(34,197,94,0.6)]">
-                                OSHADA
-                            </span>
-                        </motion.h1>
-
-                        <motion.h2
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            transition={{ delay: 0.5, duration: 1 }}
-                            className="text-green-800 font-mono text-lg lg:text-2xl tracking-[0.2em] font-light"
-                        >
-                            {">"} FULL_STACK_ENGINEER
-                        </motion.h2>
-                    </div>
-
+                {/* Description Grid (matches "description") */}
+                <div className="grid grid-cols-1 md:grid-cols-[1.5fr_1fr] gap-12 md:gap-24 items-end mb-16 md:mb-24">
+                    {/* Left Col: Headings */}
                     <motion.div
-                        initial={{ opacity: 0, y: 30 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 1, duration: 0.8 }}
-                        className="flex flex-col sm:flex-row gap-8 justify-center pt-8 font-mono"
+                        className="description-col"
+                        initial={{ opacity: 0, x: -30 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 1, ease: "easeOut", delay: 0.2 }}
                     >
-                        <button className="group relative px-12 py-5 bg-green-500 text-black font-bold uppercase tracking-[0.2em] transition-all hover:scale-105 active:scale-95 shadow-[0_0_30px_rgba(34,197,94,0.5)]">
-                            <span className="relative z-10 flex items-center gap-2">
-                                [ INITIALIZE_PROJECTS ]
-                            </span>
-                            <div className="absolute inset-0 bg-white opacity-0 group-hover:opacity-100 transition-opacity" />
-                        </button>
-                        <button className="px-12 py-5 border-2 border-green-500 text-green-500 font-bold uppercase tracking-[0.2em] backdrop-blur-sm hover:bg-green-500 hover:text-black transition-all hover:scale-105 active:scale-95 drop-shadow-[0_0_15px_rgba(34,197,94,0.2)]">
-                            CONTACT_USER
-                        </button>
+                        <h3 className="text-4xl md:text-5xl lg:text-[4rem] font-medium font-sans tracking-tight text-black/80 leading-[1.1]">
+                            Web Development,<br />Design, and<br />Animation
+                        </h3>
+                    </motion.div>
+
+                    {/* Right Col: Paragraph */}
+                    <motion.div
+                        className="description-col pb-2 md:pb-4"
+                        initial={{ opacity: 0, x: 30 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 1, ease: "easeOut", delay: 0.4 }}
+                    >
+                        <p className="text-[1rem] md:text-[1.1rem] text-black/60 leading-[1.6] font-medium max-w-[420px]">
+                            I believe creativity isn't just a skill, it's a mindset. Born from a passion for bold ideas and beautifully crafted storytelling, I collaborate with visionary clients to shape identities at the intersection of art and innovation.
+                        </p>
                     </motion.div>
                 </div>
-            </div>
 
-            {/* Subtle Vignette and Scanline Shadow */}
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_30%,rgba(0,0,0,0.9)_100%)] pointer-events-none" />
-            <div className="absolute inset-0 bg-[linear-gradient(rgba(18,16,16,0)_50%,rgba(0,0,0,0.1)_50%)] bg-[length:100%_4px] pointer-events-none" />
+                <div className="relative w-full h-[100px] md:h-[150px] mb-8 overflow-hidden rounded-sm flex items-center justify-center">
+                    {/* Placeholder for Pixelated Header */}
+                    <div className="w-full h-full relative bg-transparent flex items-center justify-center overflow-hidden">
+                        <h1 className="text-[15vw] md:text-[18vw] font-black tracking-tighter text-black leading-none select-none opacity-10 mix-blend-overlay">
+                            NAVINDRA
+                        </h1>
+                        <h1 className="absolute inset-0 flex items-center justify-center text-[15vw] md:text-[18vw] font-black tracking-tighter text-transparent bg-clip-text bg-gradient-to-b from-black/80 to-transparent leading-none select-none">
+                            NAVINDRA
+                        </h1>
+                    </div>
+                </div>
+
+                {/* Hero Image Section (matches "heroImg") */}
+                <div className="relative w-full flex-grow min-h-[400px] bg-gray-900 overflow-hidden rounded-sm">
+                    {/* Placeholder for Hero Img */}
+                    <div className="w-full h-full relative" style={{ background: 'url(https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=2564&auto=format&fit=crop) center/cover no-repeat' }}>
+                        <div className="absolute inset-0 bg-black/20" />
+                        <p className="absolute bottom-4 right-4 text-white/50 text-xs font-mono">
+                            [Hero Image Area]
+                        </p>
+                    </div>
+                </div>
+
+            </div>
         </section>
     )
 }
 
 export default Hero
+
+
+
