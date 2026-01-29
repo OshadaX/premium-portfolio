@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { Mail, Github, Linkedin, Twitter, ArrowUpRight } from 'lucide-react';
+import { ArrowUpRight } from 'lucide-react';
 import { useState } from 'react';
 
 const Contact = () => {
@@ -24,128 +24,155 @@ const Contact = () => {
     };
 
     const socials = [
-        { icon: Github, label: 'GitHub', href: 'https://github.com' },
-        { icon: Linkedin, label: 'LinkedIn', href: 'https://linkedin.com' },
-        { icon: Twitter, label: 'Twitter', href: 'https://twitter.com' },
-        { icon: Mail, label: 'Email', href: 'mailto:hello@example.com' },
+        { label: 'GitHub', href: 'https://github.com/OshadaX' },
+        { label: 'LinkedIn', href: 'https://linkedin.com' },
+        { label: 'Twitter', href: 'https://twitter.com' },
+        { label: 'Email', href: 'mailto:hello@oshadanavindra.com' },
     ];
 
     return (
-        <section id="contact" className="relative min-h-screen bg-premium-dark py-32 px-8 overflow-hidden">
-            <div className="max-w-7xl mx-auto">
-                <div className="grid lg:grid-cols-2 gap-24 items-start">
-                    {/* Left Side: Large Text & Socials */}
+        <section id="contact" className="relative py-24 md:py-32 px-8 md:px-12 lg:px-24 bg-[#fcfcfc] overflow-hidden">
+            <div className="max-w-[1400px] mx-auto">
+                {/* Section Header */}
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.8 }}
+                    className="mb-16 md:mb-24"
+                >
+                    <h2 className="text-[10vw] md:text-[6vw] font-serif font-medium text-black leading-none mb-4">
+                        05 — Contact
+                    </h2>
+                    <div className="w-full h-[1px] bg-black/10 mt-8" />
+                </motion.div>
+
+                <div className="grid grid-cols-1 md:grid-cols-[1fr_2.5fr] gap-12 md:gap-24">
+                    {/* Left Col: Info & Socials */}
                     <motion.div
                         initial={{ opacity: 0, x: -20 }}
                         whileInView={{ opacity: 1, x: 0 }}
-                        transition={{ duration: 0.8 }}
-                        className="space-y-16"
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.8, delay: 0.2 }}
+                        className="space-y-12"
                     >
                         <div>
-                            <span className="text-premium-accent font-sans text-xs tracking-[0.4em] uppercase mb-4 block">
-                                04 — Contact
-                            </span>
-                            <h2 className="text-6xl md:text-8xl font-serif text-white leading-tight italic">
-                                Let's create <br />
-                                <span className="text-premium-accent font-sans font-black not-italic uppercase tracking-tighter">
-                                    together
-                                </span>
-                            </h2>
-                            <p className="mt-8 text-premium-gray-400 font-sans text-xl leading-relaxed max-w-md">
-                                Have a vision you'd like to bring to life? I'm always open to discussing new projects and creative opportunities.
+                            <h3 className="text-3xl font-serif font-medium text-black mb-6">
+                                Let's build<br />something new.
+                            </h3>
+                            <p className="text-lg text-black/60 font-sans leading-relaxed max-w-xs">
+                                Have a project in mind or just want to say hi? Feel free to reach out.
                             </p>
                         </div>
 
-                        <div className="space-y-8">
-                            <h4 className="text-white font-sans text-xs font-black uppercase tracking-widest border-b border-premium-gray-800 pb-2 inline-block">Social Connection</h4>
-                            <div className="grid grid-cols-2 gap-6 max-w-sm">
+                        <div className="space-y-4">
+                            <span className="text-xs font-mono text-gray-400 uppercase tracking-widest block">Connection</span>
+                            <div className="flex flex-col items-start gap-4">
                                 {socials.map((social) => (
                                     <a
                                         key={social.label}
                                         href={social.href}
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        className="group flex items-center justify-between p-4 border border-premium-gray-800 hover:border-premium-accent transition-all duration-500"
+                                        className="group relative inline-flex items-center text-lg font-sans text-black overflow-hidden"
                                     >
-                                        <span className="text-premium-gray-400 group-hover:text-white font-sans text-xs tracking-widest uppercase transition-colors">
+                                        <span className="relative z-10 group-hover:text-gray-500 transition-colors duration-300">
                                             {social.label}
                                         </span>
-                                        <ArrowUpRight size={16} className="text-premium-gray-600 group-hover:text-premium-accent transition-transform group-hover:-translate-y-1 group-hover:translate-x-1" />
+                                        <ArrowUpRight size={18} className="ml-2 text-black/20 group-hover:text-black transition-all duration-300 transform group-hover:-translate-y-1 group-hover:translate-x-1" />
                                     </a>
                                 ))}
                             </div>
                         </div>
                     </motion.div>
 
-                    {/* Right Side: High-End Form */}
+                    {/* Right Col: Minimal Form */}
                     <motion.div
-                        initial={{ opacity: 0, y: 50 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.8, delay: 0.2 }}
-                        className="bg-premium-gray-900 border border-premium-gray-800 p-8 md:p-12"
+                        initial={{ opacity: 0, x: 20 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.8, delay: 0.3 }}
                     >
                         <form onSubmit={handleSubmit} className="space-y-12">
-                            <div className="relative">
-                                <label className="text-premium-gray-500 font-sans text-[10px] uppercase tracking-[0.2em] mb-4 block">Your Name</label>
-                                <input
-                                    type="text"
-                                    value={formData.name}
-                                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                                    required
-                                    className="w-full bg-transparent border-b border-premium-gray-800 text-white font-serif italic text-2xl py-2 focus:border-premium-accent focus:outline-none transition-colors"
-                                    placeholder="Enter your name"
-                                />
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+                                <div className="space-y-4">
+                                    <label className="text-[10px] font-mono text-gray-400 uppercase tracking-widest">Name</label>
+                                    <input
+                                        type="text"
+                                        value={formData.name}
+                                        onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                                        required
+                                        className="w-full bg-transparent border-b border-black/10 py-4 text-2xl font-serif italic text-black focus:border-black focus:outline-none transition-colors"
+                                        placeholder="Oshada Navindra"
+                                    />
+                                </div>
+                                <div className="space-y-4">
+                                    <label className="text-[10px] font-mono text-gray-400 uppercase tracking-widest">Email</label>
+                                    <input
+                                        type="email"
+                                        value={formData.email}
+                                        onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                                        required
+                                        className="w-full bg-transparent border-b border-black/10 py-4 text-2xl font-serif italic text-black focus:border-black focus:outline-none transition-colors"
+                                        placeholder="hello@world.com"
+                                    />
+                                </div>
                             </div>
 
-                            <div className="relative">
-                                <label className="text-premium-gray-500 font-sans text-[10px] uppercase tracking-[0.2em] mb-4 block">Email Address</label>
-                                <input
-                                    type="email"
-                                    value={formData.email}
-                                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                                    required
-                                    className="w-full bg-transparent border-b border-premium-gray-800 text-white font-serif italic text-2xl py-2 focus:border-premium-accent focus:outline-none transition-colors"
-                                    placeholder="Enter your email"
-                                />
-                            </div>
-
-                            <div className="relative">
-                                <label className="text-premium-gray-500 font-sans text-[10px] uppercase tracking-[0.2em] mb-4 block">Your Message</label>
+                            <div className="space-y-4">
+                                <label className="text-[10px] font-mono text-gray-400 uppercase tracking-widest">Message</label>
                                 <textarea
                                     value={formData.message}
                                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                                     required
-                                    rows={4}
-                                    className="w-full bg-transparent border-b border-premium-gray-800 text-white font-serif italic text-2xl py-2 focus:border-premium-accent focus:outline-none transition-colors resize-none"
-                                    placeholder="Tell me about your project"
+                                    rows={1}
+                                    className="w-full bg-transparent border-b border-black/10 py-4 text-2xl font-serif italic text-black focus:border-black focus:outline-none transition-colors resize-none overflow-hidden"
+                                    placeholder="Tell me about your project..."
+                                    style={{ height: 'auto', minHeight: '60px' }}
+                                    onInput={(e) => {
+                                        const target = e.target as HTMLTextAreaElement;
+                                        target.style.height = 'auto';
+                                        target.style.height = `${target.scrollHeight}px`;
+                                    }}
                                 />
                             </div>
 
-                            <button
-                                type="submit"
-                                disabled={status !== 'idle'}
-                                className="w-full group py-6 border border-premium-accent text-premium-accent font-sans font-black uppercase tracking-widest hover:bg-premium-accent hover:text-premium-dark transition-all duration-500 disabled:opacity-50"
-                            >
-                                <span className="flex items-center justify-center gap-3">
-                                    {status === 'idle' && 'Send Message'}
-                                    {status === 'sending' && 'Transmitting...'}
-                                    {status === 'sent' && 'Message Delivered'}
-                                    <ArrowUpRight size={20} className="transition-transform group-hover:-translate-y-1 group-hover:translate-x-1" />
-                                </span>
-                            </button>
+                            <div className="pt-8">
+                                <button
+                                    type="submit"
+                                    disabled={status !== 'idle'}
+                                    className="group relative inline-flex items-center gap-4 text-3xl md:text-5xl font-serif text-black hover:text-gray-400 transition-colors duration-500 disabled:opacity-50"
+                                >
+                                    <span>
+                                        {status === 'idle' && 'Send Inquiry'}
+                                        {status === 'sending' && 'Sending...'}
+                                        {status === 'sent' && 'Sent.'}
+                                    </span>
+                                    <div className="flex items-center justify-center w-12 h-12 md:w-16 md:h-16 rounded-full border border-black/10 group-hover:border-black/40 transition-colors duration-500">
+                                        <ArrowUpRight size={24} className="transition-transform duration-500 group-hover:-translate-y-1 group-hover:translate-x-1" />
+                                    </div>
+                                </button>
+                            </div>
                         </form>
                     </motion.div>
                 </div>
 
-                <div className="mt-40 pt-12 border-t border-premium-gray-800 flex flex-col md:flex-row justify-between items-center gap-8">
-                    <div className="text-premium-gray-600 font-sans text-[10px] tracking-widest uppercase italic">
-                        © 2025 Oshada Navindra
+                {/* Footer Style Credits */}
+                <motion.div
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 1, delay: 0.5 }}
+                    className="mt-40 pt-12 border-t border-black/5 flex flex-col md:flex-row justify-between items-center gap-8"
+                >
+                    <div className="text-[10px] font-mono text-gray-400 uppercase tracking-widest">
+                        © 2026 Digital Playground
                     </div>
-                    <div className="flex gap-12 text-premium-gray-600 font-sans text-[10px] tracking-widest uppercase">
-                        <span>Digital Craftsman</span>
-                        <span>Available for Projects</span>
+                    <div className="flex gap-12 text-[10px] font-mono text-gray-400 uppercase tracking-widest">
+                        <span>Sri Lanka — 10:35 AM</span>
+                        <span>Design & Development</span>
                     </div>
-                </div>
+                </motion.div>
             </div>
         </section>
     );
