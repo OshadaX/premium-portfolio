@@ -7,6 +7,8 @@ import Projects from './components/Projects/Projects';
 import Contact from './components/Contact/Contact';
 import Experience from './components/Experience/Experience';
 import PageTransition from './components/shared/PageTransition';
+import CustomCursor from './components/shared/CustomCursor';
+import ScrollProgress from './components/shared/ScrollProgress';
 
 function App() {
     // Start with transition active (curtain covering screen)
@@ -43,6 +45,12 @@ function App() {
 
     return (
         <div className="min-h-screen bg-[#fcfcfc] text-black font-sans relative overflow-hidden selection:bg-black selection:text-white">
+            {/* Custom Cursor - Desktop only */}
+            <CustomCursor />
+
+            {/* Scroll Progress Bar */}
+            <ScrollProgress />
+
             <PageTransition isTransitioning={isTransitioning} />
 
             <Navigation onNavigate={handleNavigation} />

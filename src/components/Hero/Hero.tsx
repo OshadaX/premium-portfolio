@@ -1,39 +1,108 @@
 import React from "react"
 import { motion } from "framer-motion"
+import { ChevronDown } from "lucide-react"
 
+// Staggered text animation for individual words
+const AnimatedText = ({ text, delay = 0 }: { text: string; delay?: number }) => {
+    const words = text.split(' ');
+
+    return (
+        <span className="inline">
+            {words.map((word, i) => (
+                <motion.span
+                    key={i}
+                    initial={{ opacity: 0, y: 30 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{
+                        duration: 0.6,
+                        delay: delay + i * 0.08,
+                        ease: [0.25, 0.46, 0.45, 0.94]
+                    }}
+                    className="inline-block mr-[0.25em]"
+                >
+                    {word}
+                </motion.span>
+            ))}
+        </span>
+    );
+};
+
+// Letter-by-letter animation for the big name
+const AnimatedName = ({ name }: { name: string }) => {
+    return (
+        <span className="inline-flex">
+            {name.split('').map((char, i) => (
+                <motion.span
+                    key={i}
+                    initial={{ opacity: 0, y: 100, rotateX: 90 }}
+                    animate={{ opacity: 1, y: 0, rotateX: 0 }}
+                    transition={{
+                        duration: 0.8,
+                        delay: 0.5 + i * 0.05,
+                        ease: [0.25, 0.46, 0.45, 0.94]
+                    }}
+                    className="inline-block"
+                    style={{ transformOrigin: 'bottom' }}
+                >
+                    {char}
+                </motion.span>
+            ))}
+        </span>
+    );
+};
 
 const Hero: React.FC = () => {
+    const scrollToExperience = () => {
+        document.getElementById('experience')?.scrollIntoView({ behavior: 'smooth' });
+    };
+
     return (
         <section className="relative min-h-screen flex flex-col pt-32 md:pt-40 px-8 md:px-12 lg:px-24 bg-[#fcfcfc] overflow-hidden">
-            {/* Overlay (from HTML) - kept for structure, unused for now */}
-            <div className="absolute inset-0 pointer-events-none z-0" />
+            {/* Subtle background grid */}
+            <div
+                className="absolute inset-0 pointer-events-none z-0 opacity-[0.03]"
+                style={{
+                    backgroundImage: `linear-gradient(to right, #000 1px, transparent 1px), linear-gradient(to bottom, #000 1px, transparent 1px)`,
+                    backgroundSize: '60px 60px'
+                }}
+            />
 
-            {/* Counter (Keep existing or remove? HTML has a counter) */}
+            {/* Counter with subtle animation */}
             <motion.div
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, ease: "easeOut" }}
                 className="absolute top-8 left-8 md:left-12 lg:left-24"
             >
-                <div className="text-[0.65rem] font-bold tracking-[0.2em] text-gray-400 select-none">
-                    <p>0</p>
+                <div className="text-[0.65rem] font-mono tracking-[0.2em] text-gray-400 select-none">
+                    <motion.span
+                        animate={{ opacity: [0.4, 1, 0.4] }}
+                        transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                    >
+                        ●
+                    </motion.span>
+                    <span className="ml-2">AVAILABLE FOR WORK</span>
                 </div>
             </motion.div>
 
             {/* Main Content Container */}
             <div className="w-full max-w-[1400px] mx-auto z-10 flex-grow flex flex-col">
 
-                {/* Description Grid (matches "description") */}
+                {/* Description Grid */}
                 <div className="grid grid-cols-1 md:grid-cols-[1.5fr_1fr] gap-12 md:gap-24 items-end mb-16 md:mb-24">
                     {/* Left Col: Headings */}
                     <motion.div
                         className="description-col"
-                        initial={{ opacity: 0, x: -30 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ duration: 1, ease: "easeOut", delay: 0.2 }}
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ duration: 1, delay: 0.2 }}
                     >
                         <h3 className="text-4xl md:text-5xl lg:text-[4rem] font-medium font-sans tracking-tight text-black/80 leading-[1.1]">
-                            Web Development,<br />Design, and<br />Animation
+                            <AnimatedText text="Web Development," delay={0.3} />
+                            <br />
+                            <AnimatedText text="Design, and" delay={0.5} />
+                            <br />
+                            <AnimatedText text="Animation" delay={0.7} />
                         </h3>
                     </motion.div>
 
@@ -42,7 +111,7 @@ const Hero: React.FC = () => {
                         className="description-col pb-2 md:pb-4"
                         initial={{ opacity: 0, x: 30 }}
                         animate={{ opacity: 1, x: 0 }}
-                        transition={{ duration: 1, ease: "easeOut", delay: 0.4 }}
+                        transition={{ duration: 1, ease: "easeOut", delay: 0.8 }}
                     >
                         <p className="text-[1rem] md:text-[1.1rem] text-black/60 leading-[1.6] font-medium max-w-[420px]">
                             I believe creativity isn't just a skill, it's a mindset. Born from a passion for bold ideas and beautifully crafted storytelling, I collaborate with visionary clients to shape identities at the intersection of art and innovation.
@@ -50,28 +119,54 @@ const Hero: React.FC = () => {
                     </motion.div>
                 </div>
 
-                <div className="relative w-full h-[100px] md:h-[150px] mb-8 overflow-hidden rounded-sm flex items-center justify-center">
-                    {/* Placeholder for Pixelated Header */}
-                    <div className="w-full h-full relative bg-transparent flex items-center justify-center overflow-hidden">
-                        <h1 className="text-[15vw] md:text-[18vw] font-black tracking-tighter text-black leading-none select-none opacity-10 mix-blend-overlay">
-                            NAVINDRA
+                {/* Name Display - Enhanced visibility */}
+                <div className="relative w-full h-[120px] md:h-[180px] mb-8 overflow-hidden flex items-center justify-center">
+                    <div className="w-full h-full relative flex items-center justify-center overflow-hidden">
+                        {/* Background shadow text */}
+                        <h1 className="absolute text-[15vw] md:text-[18vw] font-black tracking-tighter text-black/5 leading-none select-none">
+                            <AnimatedName name="NAVINDRA" />
                         </h1>
-                        <h1 className="absolute inset-0 flex items-center justify-center text-[15vw] md:text-[18vw] font-black tracking-tighter text-transparent bg-clip-text bg-gradient-to-b from-black/80 to-transparent leading-none select-none">
-                            NAVINDRA
+
+                        {/* Main gradient text */}
+                        <h1 className="text-[15vw] md:text-[18vw] font-black tracking-tighter leading-none select-none bg-gradient-to-b from-black via-black/70 to-black/20 bg-clip-text text-transparent">
+                            <AnimatedName name="NAVINDRA" />
                         </h1>
                     </div>
                 </div>
 
-                {/* Hero Image Section (matches "heroImg") */}
-                <div className="relative w-full flex-grow min-h-[400px] bg-gray-900 overflow-hidden rounded-sm">
-                    {/* Placeholder for Hero Img */}
-                    <div className="w-full h-full relative" style={{ background: 'url(https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=2564&auto=format&fit=crop) center/cover no-repeat' }}>
-                        <div className="absolute inset-0 bg-black/20" />
-                        <p className="absolute bottom-4 right-4 text-white/50 text-xs font-mono">
-                            [Hero Image Area]
-                        </p>
+                {/* Hero Image Section */}
+                <motion.div
+                    initial={{ opacity: 0, scale: 0.98 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 1.2, delay: 1.2, ease: [0.25, 0.46, 0.45, 0.94] }}
+                    className="relative w-full flex-grow min-h-[400px] bg-gray-900 overflow-hidden rounded-sm group"
+                >
+                    <div
+                        className="w-full h-full relative transition-transform duration-700 group-hover:scale-105"
+                        style={{ background: 'url(https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=2564&auto=format&fit=crop) center/cover no-repeat' }}
+                    >
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
                     </div>
-                </div>
+                </motion.div>
+
+                {/* Scroll Indicator */}
+                <motion.button
+                    onClick={scrollToExperience}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8, delay: 1.8 }}
+                    className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 group cursor-pointer"
+                >
+                    <span className="text-[10px] font-mono text-gray-400 uppercase tracking-[0.2em] group-hover:text-black transition-colors">
+                        Scroll to explore
+                    </span>
+                    <motion.div
+                        animate={{ y: [0, 8, 0] }}
+                        transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+                    >
+                        <ChevronDown size={20} className="text-gray-400 group-hover:text-black transition-colors" />
+                    </motion.div>
+                </motion.button>
 
             </div>
         </section>
@@ -79,6 +174,3 @@ const Hero: React.FC = () => {
 }
 
 export default Hero
-
-
-
