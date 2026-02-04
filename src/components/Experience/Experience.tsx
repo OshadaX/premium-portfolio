@@ -2,8 +2,8 @@ import { motion } from 'framer-motion';
 
 const Experience = () => {
     return (
-        <section id="experience" className="relative py-24 md:py-32 px-8 md:px-12 lg:px-24 bg-[#fcfcfc] overflow-hidden">
-            <div className="max-w-[1400px] mx-auto">
+        <section id="experience" className="relative h-full py-24 md:py-32 px-8 md:px-12 lg:px-24 bg-[#fcfcfc] overflow-hidden flex flex-col justify-center">
+            <div className="max-w-[1400px] mx-auto w-full">
                 {/* Section Header */}
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}

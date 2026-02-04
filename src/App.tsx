@@ -8,7 +8,6 @@ import Contact from './components/Contact/Contact';
 import Experience from './components/Experience/Experience';
 import PageTransition from './components/shared/PageTransition';
 import CustomCursor from './components/shared/CustomCursor';
-import ScrollProgress from './components/shared/ScrollProgress';
 
 function App() {
     // Start with transition active (curtain covering screen)
@@ -44,29 +43,39 @@ function App() {
     };
 
     return (
-        <div className="min-h-screen bg-[#fcfcfc] text-black font-sans relative overflow-hidden selection:bg-black selection:text-white">
+        <div className="h-screen w-full bg-[#fcfcfc] text-[#1a1a1a] font-sans relative overflow-y-scroll snap-y snap-mandatory scroll-smooth overflow-x-hidden selection:bg-black selection:text-white scrollbar-hide">
+            <div className="noise-overlay fixed inset-0 pointer-events-none z-50" />
             {/* Custom Cursor - Desktop only */}
             <CustomCursor />
-
-            {/* Scroll Progress Bar */}
-            <ScrollProgress />
 
             <PageTransition isTransitioning={isTransitioning} />
 
             <Navigation onNavigate={handleNavigation} />
 
-            <main className="relative z-10">
-                <div ref={heroRef} id="hero">
+            <main className="relative z-0">
+                <section ref={heroRef} id="hero" className="h-screen w-full snap-center relative overflow-hidden">
                     <Hero />
-                </div>
+                </section>
 
-                {/* About Section Removed/Commented */}
+                <section id="experience" className="h-screen w-full snap-center relative overflow-hidden flex items-center justify-center">
+                    <Experience />
+                </section>
 
-                <Experience /> {/* 01 — Work */}
-                <About />      {/* 02 — About */}
-                <Projects />   {/* 03 — Selected Projects */}
-                <Skills />     {/* 04 — Technologies */}
-                <Contact />
+                <section id="about" className="h-screen w-full snap-center relative overflow-hidden flex items-center justify-center">
+                    <About />
+                </section>
+
+                <section id="projects" className="h-screen w-full snap-center relative overflow-hidden flex items-center justify-center">
+                    <Projects />
+                </section>
+
+                <section id="skills" className="h-screen w-full snap-center relative overflow-hidden flex items-center justify-center">
+                    <Skills />
+                </section>
+
+                <section id="contact" className="h-screen w-full snap-center relative overflow-hidden flex items-center justify-center">
+                    <Contact />
+                </section>
             </main>
         </div>
     );

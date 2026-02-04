@@ -27,46 +27,42 @@ export default function Navigation({ onNavigate }: NavigationProps) {
     };
 
     return (
-        <nav className="fixed top-0 left-0 w-full z-50 pointer-events-none">
-            {/* Main Flex Container (matches "nav") */}
-            <div className="mx-auto flex w-full max-w-[1400px] items-start justify-between p-8 md:p-12 lg:p-16">
 
-                {/* Left Column: Logo (matches "col" -> "nav-logo") */}
-                <div className="flex-shrink-0 pointer-events-auto">
-                    <motion.div
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }} // Adjusted to 1 for better visibility
-                        transition={{ duration: 1, delay: 0.5 }}
-                    >
-                        <a href="/" className="inline-block group">
-                            <FlowerIcon className="w-8 h-8 text-black transition-transform duration-700 group-hover:rotate-180" />
-                        </a>
-                    </motion.div>
-                </div>
-
-                {/* Right Column: Nav Items (matches "col" -> "nav-items") */}
-                <div className="flex-shrink-0 pointer-events-auto">
-                    <motion.div
-                        initial={{ opacity: 0, x: 20 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ duration: 1, delay: 0.8 }}
-                        className="flex flex-col items-end gap-1" // Gap-1 for tighter spacing like HTML
-                    >
-                        {navLinks.map((link) => (
-                            <div key={link.name} className="nav-item block">
-                                <a
-                                    href={`#${link.id}`}
-                                    onClick={(e) => handleClick(e, link.id)}
-                                    className="relative text-[0.9rem] md:text-[1rem] font-medium leading-none text-black/80 hover:text-black transition-colors duration-300 cursor-pointer"
-                                >
-                                    {link.name}
-                                </a>
-                            </div>
-                        ))}
-                    </motion.div>
-                </div>
-
+        <>
+            {/* Logo - Fixed Top Left */}
+            <div className="fixed top-8 left-8 z-50 pointer-events-auto mix-blend-difference text-white">
+                <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 1, delay: 0.5 }}
+                >
+                    <a href="/" className="inline-block group">
+                        <FlowerIcon className="w-10 h-10 text-inherit transition-transform duration-700 group-hover:rotate-180" />
+                    </a>
+                </motion.div>
             </div>
-        </nav>
+
+            {/* Navigation Dock - Fixed Bottom Center */}
+            <nav className="fixed bottom-8 left-1/2 -translate-x-1/2 z-50 pointer-events-none">
+                <motion.div
+                    initial={{ y: 100, opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    transition={{ duration: 0.8, delay: 0.8, type: "spring", stiffness: 260, damping: 20 }}
+                    className="flex items-center gap-2 px-2 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 shadow-lg pointer-events-auto"
+                >
+                    {navLinks.map((link) => (
+                        <div key={link.name} className="relative">
+                            <a
+                                href={`#${link.id}`}
+                                onClick={(e) => handleClick(e, link.id)}
+                                className="relative block px-6 py-2 text-sm font-medium text-[#1a1a1a] hover:text-black transition-colors duration-300 rounded-full hover:bg-white/20"
+                            >
+                                {link.name}
+                            </a>
+                        </div>
+                    ))}
+                </motion.div>
+            </nav>
+        </>
     );
 }
