@@ -29,16 +29,16 @@ const About = () => {
             </div>
         ),
         personal: (
-            <div className="space-y-6">
-                <p className="text-lg font-sans leading-relaxed text-black/80">
-                    I started learning web development out of curiosity and quickly became interested in how design and code work together.
+            <div className="space-y-8 max-w-2xl">
+                <p className="text-xl font-serif italic text-black/90 leading-relaxed">
+                    "I started learning web development out of curiosity and quickly became interested in how design and code work together."
                 </p>
-                <p className="text-lg font-sans leading-relaxed text-gray-500">
+                <p className="text-lg font-sans leading-relaxed text-[#1a1a1a]/70">
                     Over time, I moved from writing simple features to understanding larger systems, team workflows, and responsibility. Working as an intern helped me learn not just how to code, but how to collaborate, review code, and think long-term about software quality.
                 </p>
-                <div className="pt-4">
-                    <span className="text-sm font-serif italic text-black/60">
-                        I value clarity, consistency, and continuous improvement.
+                <div className="pt-4 border-t border-black/5">
+                    <span className="text-sm font-mono text-gray-400 uppercase tracking-widest">
+                        Values: Clarity · Consistency · Improvement
                     </span>
                 </div>
             </div>
@@ -91,21 +91,21 @@ const About = () => {
 
                 <div className="grid grid-cols-1 md:grid-cols-[1fr_2fr] gap-12 md:gap-24">
                     {/* Navigation Tabs */}
-                    <div className="flex flex-col items-start gap-4">
+                    <div className="flex flex-col items-start gap-6 border-l border-black/10 pl-8 md:pl-12">
                         {tabs.map((tab) => (
                             <button
                                 key={tab.id}
                                 onClick={() => setActiveTab(tab.id)}
-                                className="group relative py-1 text-left"
+                                className="group relative text-left py-1"
                             >
-                                <span className={`text-lg md:text-xl font-sans transition-colors duration-300 ${activeTab === tab.id ? 'text-black font-medium' : 'text-gray-400 hover:text-black/60'}`}>
+                                <span className={`text-xl md:text-2xl font-serif transition-all duration-300 ${activeTab === tab.id ? 'text-[#1a1a1a] translate-x-4' : 'text-gray-400 hover:text-[#1a1a1a]/60'}`}>
                                     {tab.label}
                                 </span>
                                 {activeTab === tab.id && (
-                                    <motion.div
-                                        layoutId="activeTabUnderline"
-                                        className="absolute bottom-0 left-0 w-full h-[1px] bg-black"
-                                        transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                                    <motion.span
+                                        layoutId="activeAboutTabMarker"
+                                        className="absolute top-1/2 -left-6 -translate-y-1/2 w-2 h-2 bg-[#1a1a1a] rounded-full"
+                                        transition={{ type: "spring", stiffness: 300, damping: 25 }}
                                     />
                                 )}
                             </button>

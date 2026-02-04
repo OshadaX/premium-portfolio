@@ -97,12 +97,12 @@ const Hero: React.FC = () => {
                         animate={{ opacity: 1 }}
                         transition={{ duration: 1, delay: 0.2 }}
                     >
-                        <h3 className="text-4xl md:text-5xl lg:text-[4rem] font-medium font-sans tracking-tight text-black/80 leading-[1.1]">
-                            <AnimatedText text="Web Development," delay={0.3} />
+                        <h3 className="text-4xl md:text-5xl lg:text-[4rem] font-medium font-sans tracking-tight text-[#1a1a1a] leading-[1.1]">
+                            <AnimatedText text="Web Development," delay={0.4} />
                             <br />
-                            <AnimatedText text="Design, and" delay={0.5} />
+                            <AnimatedText text="Design, and" delay={0.6} />
                             <br />
-                            <AnimatedText text="Animation" delay={0.7} />
+                            <AnimatedText text="Animation" delay={0.8} />
                         </h3>
                     </motion.div>
 
@@ -111,9 +111,9 @@ const Hero: React.FC = () => {
                         className="description-col pb-2 md:pb-4"
                         initial={{ opacity: 0, x: 30 }}
                         animate={{ opacity: 1, x: 0 }}
-                        transition={{ duration: 1, ease: "easeOut", delay: 0.8 }}
+                        transition={{ duration: 1, ease: "easeOut", delay: 1.0 }}
                     >
-                        <p className="text-[1rem] md:text-[1.1rem] text-black/60 leading-[1.6] font-medium max-w-[420px]">
+                        <p className="text-[1rem] md:text-[1.1rem] text-[#1a1a1a]/70 leading-[1.6] font-medium max-w-[420px]">
                             I believe creativity isn't just a skill, it's a mindset. Born from a passion for bold ideas and beautifully crafted storytelling, I collaborate with visionary clients to shape identities at the intersection of art and innovation.
                         </p>
                     </motion.div>
@@ -128,7 +128,7 @@ const Hero: React.FC = () => {
                         </h1>
 
                         {/* Main gradient text */}
-                        <h1 className="text-[15vw] md:text-[18vw] font-black tracking-tighter leading-none select-none bg-gradient-to-b from-black via-black/70 to-black/20 bg-clip-text text-transparent">
+                        <h1 className="text-[15vw] md:text-[18vw] font-black tracking-[-0.05em] leading-none select-none text-[#1a1a1a]">
                             <AnimatedName name="NAVINDRA" />
                         </h1>
                     </div>
@@ -138,7 +138,7 @@ const Hero: React.FC = () => {
                 <motion.div
                     initial={{ opacity: 0, scale: 0.98 }}
                     animate={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 1.2, delay: 1.2, ease: [0.25, 0.46, 0.45, 0.94] }}
+                    transition={{ duration: 1.2, delay: 1.4, ease: [0.25, 0.46, 0.45, 0.94] }}
                     className="relative w-full flex-grow min-h-[400px] bg-gray-900 overflow-hidden rounded-sm group"
                 >
                     <div

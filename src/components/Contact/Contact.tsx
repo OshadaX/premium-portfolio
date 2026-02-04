@@ -31,8 +31,8 @@ const Contact = () => {
     ];
 
     return (
-        <section id="contact" className="relative py-24 md:py-32 px-8 md:px-12 lg:px-24 bg-[#fcfcfc] overflow-hidden">
-            <div className="max-w-[1400px] mx-auto">
+        <section id="contact" className="relative h-full py-24 md:py-32 px-8 md:px-12 lg:px-24 bg-[#fcfcfc] overflow-hidden flex flex-col justify-center">
+            <div className="max-w-[1400px] mx-auto w-full">
                 {/* Section Header */}
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
@@ -97,44 +97,53 @@ const Contact = () => {
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
                                 <div className="space-y-4">
                                     <label className="text-[10px] font-mono text-gray-400 uppercase tracking-widest">Name</label>
-                                    <input
-                                        type="text"
-                                        value={formData.name}
-                                        onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                                        required
-                                        className="w-full bg-transparent border-b border-black/10 py-4 text-2xl font-serif italic text-black focus:border-black focus:outline-none transition-colors"
-                                        placeholder="Oshada Navindra"
-                                    />
+                                    <div className="relative group">
+                                        <input
+                                            type="text"
+                                            value={formData.name}
+                                            onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                                            required
+                                            className="w-full bg-transparent border-b border-black/10 py-4 text-2xl font-serif italic text-black focus:outline-none transition-colors peer"
+                                            placeholder="Oshada Navindra"
+                                        />
+                                        <span className="absolute bottom-0 left-0 w-full h-[1px] bg-black transform scale-x-0 peer-focus:scale-x-100 transition-transform duration-500 origin-left" />
+                                    </div>
                                 </div>
                                 <div className="space-y-4">
                                     <label className="text-[10px] font-mono text-gray-400 uppercase tracking-widest">Email</label>
-                                    <input
-                                        type="email"
-                                        value={formData.email}
-                                        onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                                        required
-                                        className="w-full bg-transparent border-b border-black/10 py-4 text-2xl font-serif italic text-black focus:border-black focus:outline-none transition-colors"
-                                        placeholder="hello@world.com"
-                                    />
+                                    <div className="relative group">
+                                        <input
+                                            type="email"
+                                            value={formData.email}
+                                            onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                                            required
+                                            className="w-full bg-transparent border-b border-black/10 py-4 text-2xl font-serif italic text-black focus:outline-none transition-colors peer"
+                                            placeholder="hello@world.com"
+                                        />
+                                        <span className="absolute bottom-0 left-0 w-full h-[1px] bg-black transform scale-x-0 peer-focus:scale-x-100 transition-transform duration-500 origin-left" />
+                                    </div>
                                 </div>
                             </div>
 
                             <div className="space-y-4">
                                 <label className="text-[10px] font-mono text-gray-400 uppercase tracking-widest">Message</label>
-                                <textarea
-                                    value={formData.message}
-                                    onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                                    required
-                                    rows={1}
-                                    className="w-full bg-transparent border-b border-black/10 py-4 text-2xl font-serif italic text-black focus:border-black focus:outline-none transition-colors resize-none overflow-hidden"
-                                    placeholder="Tell me about your project..."
-                                    style={{ height: 'auto', minHeight: '60px' }}
-                                    onInput={(e) => {
-                                        const target = e.target as HTMLTextAreaElement;
-                                        target.style.height = 'auto';
-                                        target.style.height = `${target.scrollHeight}px`;
-                                    }}
-                                />
+                                <div className="relative group">
+                                    <textarea
+                                        value={formData.message}
+                                        onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                                        required
+                                        rows={1}
+                                        className="w-full bg-transparent border-b border-black/10 py-4 text-2xl font-serif italic text-black focus:outline-none transition-colors resize-none overflow-hidden peer"
+                                        placeholder="Tell me about your project..."
+                                        style={{ height: 'auto', minHeight: '60px' }}
+                                        onInput={(e) => {
+                                            const target = e.target as HTMLTextAreaElement;
+                                            target.style.height = 'auto';
+                                            target.style.height = `${target.scrollHeight}px`;
+                                        }}
+                                    />
+                                    <span className="absolute bottom-0 left-0 w-full h-[1px] bg-black transform scale-x-0 peer-focus:scale-x-100 transition-transform duration-500 origin-left" />
+                                </div>
                             </div>
 
                             <div className="pt-8">
