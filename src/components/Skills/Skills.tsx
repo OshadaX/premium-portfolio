@@ -13,7 +13,7 @@ const Skills = () => {
     };
 
     return (
-        <section id="skills" className="relative h-full py-24 md:py-32 px-8 md:px-12 lg:px-24 bg-[#fcfcfc] overflow-hidden flex flex-col justify-center">
+        <section id="skills" className="relative py-24 md:py-32 px-8 md:px-12 lg:px-24 bg-[#fcfcfc]">
             <div className="max-w-[1400px] mx-auto w-full">
                 {/* Section Header */}
                 <motion.div

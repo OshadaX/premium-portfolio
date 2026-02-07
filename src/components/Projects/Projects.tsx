@@ -94,20 +94,20 @@ const Projects = () => {
     const selectedProject = projects.find(p => p.title === selectedId);
 
     return (
-        <div className="relative h-full py-32 px-24 bg-[#fcfcfc] overflow-hidden flex flex-col justify-center">
-            <div className="max-w-[1400px] mx-auto w-full h-[90vh] flex flex-col">
+        <div className="relative py-24 md:py-32 px-8 md:px-12 lg:px-24 bg-[#fcfcfc]">
+            <div className="max-w-[1400px] mx-auto w-full flex flex-col">
                 {/* Section Header */}
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.8 }}
-                    className="mb-8 shrink-0 text-left"
+                    className="mb-16 md:mb-24 shrink-0 text-left"
                 >
-                    <h2 className="text-[4vw] font-serif font-medium text-[#1a1a1a] leading-none mb-4">
+                    <h2 className="text-[10vw] md:text-[6vw] font-serif font-medium text-black leading-none mb-4">
                         03 — Selected Projects
                     </h2>
-                    <div className="w-full h-[1px] bg-black/10 mt-4" />
+                    <div className="w-full h-[1px] bg-black/10 mt-8" />
                 </motion.div>
 
                 {/* Tabs */}
@@ -133,9 +133,10 @@ const Projects = () => {
                 </div>
 
                 {/* Bento Grid Layout - Fit Remaining Height */}
+                {/* Bento Grid Layout */}
                 <motion.div
                     layout
-                    className="grid grid-cols-3 gap-4 flex-1 min-h-0"
+                    className="grid grid-cols-1 md:grid-cols-3 gap-4"
                 >
                     <AnimatePresence mode="popLayout">
                         {filteredProjects.slice(0, 3).map((project, idx) => (
@@ -148,7 +149,7 @@ const Projects = () => {
                                 animate={{ opacity: 1, scale: 1 }}
                                 exit={{ opacity: 0, scale: 0.9 }}
                                 transition={{ duration: 0.5, delay: idx * 0.1 }}
-                                className={`group relative rounded-3xl overflow-hidden bg-gray-100 cursor-pointer h-full ${project.featured ? 'col-span-2' : 'col-span-1'}`}
+                                className={`group relative rounded-3xl overflow-hidden bg-gray-100 cursor-pointer h-[300px] md:h-[400px] ${project.featured ? 'md:col-span-2' : 'md:col-span-1'}`}
                             >
                                 {/* Background Image */}
                                 <div className="absolute inset-0 w-full h-full">
