@@ -1,11 +1,7 @@
 import { motion } from 'framer-motion';
+import Logo from './Logo';
 
-const FlowerIcon = ({ className }: { className?: string }) => (
-    <svg viewBox="0 0 100 100" className={className} fill="currentColor">
-        <path d="M50 0 C54 30 70 46 100 50 C70 54 54 70 50 100 C46 70 30 54 0 50 C30 46 46 30 50 0" />
-        <path d="M50 0 C54 30 70 46 100 50 C70 54 54 70 50 100 C46 70 30 54 0 50 C30 46 46 30 50 0" transform="rotate(45 50 50)" />
-    </svg>
-);
+
 
 interface NavigationProps {
     onNavigate: (sectionId: string) => void;
@@ -13,10 +9,11 @@ interface NavigationProps {
 
 export default function Navigation({ onNavigate }: NavigationProps) {
     const navLinks = [
-        { name: 'work', id: 'experience' },
-        { name: 'about', id: 'about' },
-        { name: 'blog', id: '#' },
-        { name: 'contact', id: 'contact' },
+        { name: 'Experience', id: 'experience' },
+        { name: 'About', id: 'about' },
+        { name: 'Projects', id: 'projects' },
+        { name: 'Skills', id: 'skills' },
+        { name: 'Contact', id: 'contact' },
     ];
 
     const handleClick = (e: React.MouseEvent, id: string) => {
@@ -37,7 +34,7 @@ export default function Navigation({ onNavigate }: NavigationProps) {
                     transition={{ duration: 1, delay: 0.5 }}
                 >
                     <a href="/" className="inline-block group">
-                        <FlowerIcon className="w-10 h-10 text-inherit transition-transform duration-700 group-hover:rotate-180" />
+                        <Logo className="w-12 h-12 text-white mix-blend-difference transition-transform duration-700 group-hover:rotate-12" />
                     </a>
                 </motion.div>
             </div>
