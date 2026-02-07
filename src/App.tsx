@@ -7,7 +7,9 @@ import Projects from './components/Projects/Projects';
 import Contact from './components/Contact/Contact';
 import Experience from './components/Experience/Experience';
 import PageTransition from './components/shared/PageTransition';
-import CustomCursor from './components/shared/CustomCursor';
+import ScrollProgress from './components/shared/ScrollProgress';
+import BackToTop from './components/shared/BackToTop';
+
 
 function App() {
     // Start with transition active (curtain covering screen)
@@ -45,8 +47,9 @@ function App() {
     return (
         <div className="h-screen w-full bg-[#fcfcfc] text-[#1a1a1a] font-sans relative overflow-y-scroll snap-y snap-mandatory scroll-smooth overflow-x-hidden selection:bg-black selection:text-white scrollbar-hide">
             <div className="noise-overlay fixed inset-0 pointer-events-none z-50" />
-            {/* Custom Cursor - Desktop only */}
-            <CustomCursor />
+
+            <ScrollProgress />
+            <BackToTop />
 
             <PageTransition isTransitioning={isTransitioning} />
 

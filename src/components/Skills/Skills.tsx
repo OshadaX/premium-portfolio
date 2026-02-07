@@ -1,6 +1,8 @@
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
+import { useState } from 'react';
 
 const Skills = () => {
+    const [activeTab, setActiveTab] = useState<'frontend' | 'devops'>('frontend');
     const skills = {
         frontend: [
             "React", "TypeScript", "Next.js",
@@ -30,70 +32,58 @@ const Skills = () => {
                 </motion.div>
 
                 {/* Skills Grid */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-24">
-                    {/* Frontend Column */}
-                    <div>
-                        <motion.h3
-                            initial={{ opacity: 0, x: -20 }}
-                            whileInView={{ opacity: 1, x: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.6 }}
-                            className="text-2xl md:text-3xl font-serif mb-8 text-black/90"
+                {/* Tabs */}
+                <div className="flex justify-start gap-8 mb-12 border-b border-black/10 pb-4">
+                    {['frontend', 'devops'].map((tab) => (
+                        <button
+                            key={tab}
+                            onClick={() => setActiveTab(tab as 'frontend' | 'devops')}
+                            className="relative group"
                         >
-                            Frontend Experience
-                        </motion.h3>
-                        <div className="space-y-6">
-                            {skills.frontend.map((tech, i) => (
+                            <span className={`text-xl md:text-2xl font-serif capitalize transition-colors duration-300 ${activeTab === tab ? 'text-black' : 'text-gray-400 hover:text-black/60'}`}>
+                                {tab}
+                            </span>
+                            {activeTab === tab && (
                                 <motion.div
-                                    key={tech}
-                                    initial={{ opacity: 0, y: 10 }}
-                                    whileInView={{ opacity: 1, y: 0 }}
-                                    viewport={{ once: true }}
-                                    transition={{ duration: 0.4, delay: i * 0.1 }}
-                                    className="group flex items-center justify-between border-b border-black/10 pb-4 hover:border-black/40 transition-colors duration-300"
-                                >
-                                    <span className="text-xl md:text-2xl font-sans text-gray-500 group-hover:text-black transition-colors duration-300">
-                                        {tech}
-                                    </span>
-                                    <motion.span
-                                        className="w-2 h-2 rounded-full bg-black opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                                    />
-                                </motion.div>
-                            ))}
-                        </div>
-                    </div>
+                                    layoutId="activeSkillTab"
+                                    className="absolute -bottom-[17px] left-0 w-full h-[2px] bg-black"
+                                    transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                                />
+                            )}
+                        </button>
+                    ))}
+                </div>
 
-                    {/* DevOps Column */}
-                    <div>
-                        <motion.h3
-                            initial={{ opacity: 0, x: -20 }}
-                            whileInView={{ opacity: 1, x: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.6, delay: 0.2 }}
-                            className="text-2xl md:text-3xl font-serif mb-8 text-black/90"
+                {/* Skills List */}
+                <div className="min-h-[400px]">
+                    <AnimatePresence mode="wait">
+                        <motion.div
+                            key={activeTab}
+                            initial={{ opacity: 0, y: 10 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            exit={{ opacity: 0, y: -10 }}
+                            transition={{ duration: 0.3 }}
                         >
-                            DevOps Engineering
-                        </motion.h3>
-                        <div className="space-y-6">
-                            {skills.devops.map((tech, i) => (
-                                <motion.div
-                                    key={tech}
-                                    initial={{ opacity: 0, y: 10 }}
-                                    whileInView={{ opacity: 1, y: 0 }}
-                                    viewport={{ once: true }}
-                                    transition={{ duration: 0.4, delay: 0.2 + (i * 0.1) }}
-                                    className="group flex items-center justify-between border-b border-black/10 pb-4 hover:border-black/40 transition-colors duration-300"
-                                >
-                                    <span className="text-xl md:text-2xl font-sans text-gray-500 group-hover:text-black transition-colors duration-300">
-                                        {tech}
-                                    </span>
-                                    <motion.span
-                                        className="w-2 h-2 rounded-full bg-black opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                                    />
-                                </motion.div>
-                            ))}
-                        </div>
-                    </div>
+                            <div className="space-y-6">
+                                {skills[activeTab].map((tech, i) => (
+                                    <motion.div
+                                        key={tech}
+                                        initial={{ opacity: 0, x: -10 }}
+                                        animate={{ opacity: 1, x: 0 }}
+                                        transition={{ duration: 0.3, delay: i * 0.05 }}
+                                        className="group flex items-center justify-between border-b border-black/10 pb-4 hover:border-black/40 transition-colors duration-300"
+                                    >
+                                        <span className="text-2xl md:text-4xl font-sans text-gray-500 group-hover:text-black transition-colors duration-300">
+                                            {tech}
+                                        </span>
+                                        <motion.span
+                                            className="w-3 h-3 rounded-full bg-black opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                                        />
+                                    </motion.div>
+                                ))}
+                            </div>
+                        </motion.div>
+                    </AnimatePresence>
                 </div>
             </div>
         </section>

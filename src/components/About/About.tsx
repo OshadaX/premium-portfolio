@@ -53,9 +53,9 @@ const About = () => {
                 </p>
                 <div className="flex gap-8 pt-4">
                     {[
-                        { name: 'Email', href: 'mailto:hello@oshadanavindra.com' }, // Placeholder email
+                        // { name: 'Email', href: 'mailto:hello@oshadanavindra.com' }, // Placeholder email
                         { name: 'GitHub', href: 'https://github.com/OshadaX' },
-                        { name: 'LinkedIn', href: 'https://linkedin.com' }
+                        { name: 'LinkedIn', href: 'https://www.linkedin.com/in/oshada-navindra/' }
                     ].map((link) => (
                         <a
                             key={link.name}

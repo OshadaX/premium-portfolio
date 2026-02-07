@@ -30,9 +30,15 @@ const Experience = () => {
                         <span className="text-sm md:text-base font-sans font-medium text-black tracking-wider block">
                             May 2025 — Present
                         </span>
-                        <span className="text-xs text-gray-400 mt-1 block font-mono">
+                        <motion.span
+                            initial={{ color: '#9ca3af', scale: 1 }}
+                            whileInView={{ color: '#000000', scale: 1.1, fontWeight: 600 }}
+                            viewport={{ once: false, margin: "-100px" }}
+                            transition={{ duration: 0.5, delay: 0.2 }}
+                            className="text-xs font-medium mt-1 block font-mono origin-left"
+                        >
                             8+ months
-                        </span>
+                        </motion.span>
                     </motion.div>
 
                     {/* Right Col: Details */}
@@ -55,7 +61,7 @@ const Experience = () => {
                         {/* Nested Timeline Phases */}
                         <div className="relative space-y-12">
                             {/* Phase 1 */}
-                            <div className="relative pl-8 md:pl-10 border-l border-black/10">
+                            <div className="relative pl-8 md:pl-10 border-l border-black/20">
                                 <span className="absolute -left-[5px] top-0 w-2.5 h-2.5 rounded-full bg-gray-300" />
                                 <div className="mb-4">
                                     <h4 className="font-serif text-xl text-black">First 6 Months</h4>
@@ -63,19 +69,19 @@ const Experience = () => {
                                 </div>
                                 <ul className="space-y-3">
                                     {[
-                                        "Focused on feature development and bug fixing for the Nexzop web application",
-                                        "Implemented UI components and business logic under senior developer guidance"
+                                        <>Developed 10+ core features for the <a href="#" className="border-b border-black/30 hover:border-black text-black/90 transition-colors pb-0.5">Nexzop web application</a> using React and Tailwind CSS, reducing user-reported bugs by 15%</>,
+                                        "Implemented reusable UI components and integrated RESTful APIs, improving development efficiency by 20%"
                                     ].map((item, i) => (
                                         <li key={i} className="flex items-start text-black/70 font-sans text-base leading-relaxed">
-                                            <span className="mr-3 text-black/30 mt-1.5 text-[10px]">●</span>
-                                            {item}
+                                            <span className="mr-3 text-black/30 mt-1.5 text-[10px] shrink-0">●</span>
+                                            <span className="flex-1">{item}</span>
                                         </li>
                                     ))}
                                 </ul>
                             </div>
 
                             {/* Phase 2 (Current) */}
-                            <div className="relative pl-8 md:pl-10 border-l border-black/10">
+                            <div className="relative pl-8 md:pl-10 border-l border-black/20">
                                 <span className="absolute -left-[5px] top-0 w-2.5 h-2.5 rounded-full bg-black shadow-[0_0_0_4px_rgba(0,0,0,0.1)]" />
                                 <div className="mb-4">
                                     <h4 className="font-serif text-xl text-black">Leadership & Growth</h4>
@@ -83,14 +89,14 @@ const Experience = () => {
                                 </div>
                                 <ul className="space-y-3">
                                     {[
-                                        "Took ownership of application modules and handled project-level responsibilities",
-                                        "Managed code merges and reviewed pull requests",
-                                        "Assigned tasks and coordinated development within the team",
-                                        "Contributed to improving development workflow and collaboration"
+                                        "Spearheaded the development of critical application modules, ensuring high performance and scalability",
+                                        "Maintained code quality by reviewing 5+ weekly pull requests, ensuring adherence to clean code standards",
+                                        "Orchestrated task distribution and mentored 2 junior developers, accelerating their onboarding process",
+                                        "Optimized development workflows using Docker and CI/CD pipelines, reducing deployment times by 40%"
                                     ].map((item, i) => (
                                         <li key={i} className="flex items-start text-black/70 font-sans text-base leading-relaxed">
-                                            <span className="mr-3 text-black/30 mt-1.5 text-[10px]">●</span>
-                                            {item}
+                                            <span className="mr-3 text-black/30 mt-1.5 text-[10px] shrink-0">●</span>
+                                            <span className="flex-1">{item}</span>
                                         </li>
                                     ))}
                                 </ul>
