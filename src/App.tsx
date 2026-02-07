@@ -57,23 +57,23 @@ function App() {
                     <Hero />
                 </section>
 
-                <section id="experience" className="h-screen w-full snap-center relative overflow-hidden flex items-center justify-center">
+                <section id="experience" className="min-h-screen w-full snap-start relative">
                     <Experience />
                 </section>
 
-                <section id="about" className="h-screen w-full snap-center relative overflow-hidden flex items-center justify-center">
+                <section id="about" className="min-h-screen w-full snap-start relative">
                     <About />
                 </section>
 
-                <section id="projects" className="h-screen w-full snap-center relative overflow-hidden flex items-center justify-center">
+                <section id="projects" className="min-h-screen w-full snap-start relative">
                     <Projects />
                 </section>
 
-                <section id="skills" className="h-screen w-full snap-center relative overflow-hidden flex items-center justify-center">
+                <section id="skills" className="min-h-screen w-full snap-start relative">
                     <Skills />
                 </section>
 
-                <section id="contact" className="h-screen w-full snap-center relative overflow-hidden flex items-center justify-center">
+                <section id="contact" className="min-h-screen w-full snap-start relative">
                     <Contact />
                 </section>
             </main>
