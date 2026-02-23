@@ -1,13 +1,7 @@
 import { motion } from 'framer-motion';
 import Logo from './Logo';
 
-
-
-interface NavigationProps {
-    onNavigate: (sectionId: string) => void;
-}
-
-export default function Navigation({ onNavigate }: NavigationProps) {
+export default function Navigation() {
     const navLinks = [
         { name: 'Experience', id: 'experience' },
         { name: 'About', id: 'about' },
@@ -16,15 +10,7 @@ export default function Navigation({ onNavigate }: NavigationProps) {
         { name: 'Contact', id: 'contact' },
     ];
 
-    const handleClick = (e: React.MouseEvent, id: string) => {
-        e.preventDefault();
-        if (id !== '#') {
-            onNavigate(id);
-        }
-    };
-
     return (
-
         <>
             {/* Logo - Fixed Top Left */}
             <div className="fixed top-8 left-8 z-50 pointer-events-auto mix-blend-difference text-white">
@@ -51,7 +37,6 @@ export default function Navigation({ onNavigate }: NavigationProps) {
                         <div key={link.name} className="relative">
                             <a
                                 href={`#${link.id}`}
-                                onClick={(e) => handleClick(e, link.id)}
                                 className="relative block px-6 py-2 text-sm font-medium text-[#1a1a1a] hover:text-black transition-colors duration-300 rounded-full hover:bg-white/20"
                             >
                                 {link.name}
