@@ -32,19 +32,22 @@ const Projects = () => {
                         <button
                             key={tab}
                             onClick={() => setActiveTab(tab as any)}
-                            className="relative pb-2 group"
+                            className="relative px-4 py-2 group rounded-full overflow-hidden transition-all duration-300"
                         >
-                            <span className={`text-xl font-serif capitalize transition-colors duration-300 ${activeTab === tab ? 'text-[#1a1a1a]' : 'text-gray-400 hover:text-[#1a1a1a]/60'}`}>
+                            <span className={`relative z-10 text-xl font-serif capitalize transition-colors duration-300 ${activeTab === tab ? 'text-white' : 'text-gray-400 group-hover:text-[#1a1a1a]'}`}>
                                 {tab} projects
                             </span>
-                            {activeTab === tab && (
-                                <motion.div
-                                    layoutId="activeProjectTab"
-                                    className="absolute bottom-0 left-0 w-full h-[2px] bg-[#1a1a1a]"
-                                    transition={{ type: "spring", stiffness: 300, damping: 30 }}
-                                />
-                            )}
+                            <motion.div
+                                className="absolute inset-0 bg-[#1a1a1a] rounded-full z-0"
+                                initial={false}
+                                animate={{
+                                    opacity: activeTab === tab ? 1 : 0,
+                                    scale: activeTab === tab ? 1 : 0.95
+                                }}
+                                transition={{ duration: 0.3 }}
+                            />
                         </button>
+
                     ))}
                 </div>
 
@@ -70,20 +73,20 @@ const Projects = () => {
                                     className="w-full h-full"
                                 >
                                     {/* Background Image */}
-                                    <div className="absolute inset-0 w-full h-full">
+                                    <div className="absolute inset-0 w-full h-full overflow-hidden rounded-3xl">
                                         <div className="absolute inset-0 bg-gray-200 animate-pulse z-0" />
                                         <motion.img
                                             layoutId={`image-${project.title}`}
                                             src={`${project.image}?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2`}
                                             alt={project.title}
-                                            className="w-full h-full object-cover transition-all duration-700 grayscale group-hover:grayscale-0 group-hover:scale-105"
+                                            className="w-full h-full object-cover transition-transform duration-1000 ease-out group-hover:scale-110 grayscale group-hover:grayscale-0"
                                         />
                                         {/* Gradient Overlay */}
-                                        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-80 transition-opacity duration-300 group-hover:opacity-60" />
+                                        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-black/10 opacity-70 transition-opacity duration-500 group-hover:opacity-90" />
                                     </div>
 
                                     {/* Content Overlay */}
-                                    <div className="absolute bottom-0 left-0 w-full p-6 flex flex-col items-start justify-end z-10">
+                                    <div className="absolute bottom-0 left-0 w-full p-8 flex flex-col items-start justify-end z-10">
                                         <motion.span
                                             layoutId={`tech-${project.title}`}
                                             className="inline-block px-3 py-1 mb-2 text-[10px] font-mono tracking-widest text-[#1a1a1a] bg-white/90 backdrop-blur-sm rounded-full"

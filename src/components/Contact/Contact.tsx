@@ -95,55 +95,58 @@ const Contact = () => {
                     >
                         <form onSubmit={handleSubmit} className="space-y-12">
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-                                <div className="space-y-4">
-                                    <label className="text-[10px] font-mono text-gray-400 uppercase tracking-widest">Name</label>
-                                    <div className="relative group">
-                                        <input
-                                            type="text"
-                                            value={formData.name}
-                                            onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                                            required
-                                            className="w-full bg-transparent border-b border-black/10 py-4 text-2xl font-serif italic text-black focus:outline-none transition-colors peer"
-                                            placeholder="Oshada Navindra"
-                                        />
-                                        <span className="absolute bottom-0 left-0 w-full h-[1px] bg-black transform scale-x-0 peer-focus:scale-x-100 transition-transform duration-500 origin-left" />
-                                    </div>
+                                <div className="relative group pt-6">
+                                    <input
+                                        type="text"
+                                        id="name"
+                                        value={formData.name}
+                                        onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                                        required
+                                        className="w-full bg-transparent border-b border-black/10 py-4 text-2xl font-serif text-black focus:outline-none transition-colors peer placeholder-transparent"
+                                        placeholder="Name"
+                                    />
+                                    <label htmlFor="name" className="absolute left-0 top-10 text-2xl font-serif text-gray-400 transition-all duration-300 peer-focus:top-0 peer-focus:text-[10px] peer-focus:font-mono peer-focus:uppercase peer-focus:tracking-widest peer-focus:text-black peer-valid:top-0 peer-valid:text-[10px] peer-valid:font-mono peer-valid:uppercase peer-valid:tracking-widest peer-valid:text-black pointer-events-none">
+                                        Name
+                                    </label>
+                                    <span className="absolute bottom-0 left-0 w-full h-[1px] bg-black transform scale-x-0 peer-focus:scale-x-100 transition-transform duration-500 origin-left" />
                                 </div>
-                                <div className="space-y-4">
-                                    <label className="text-[10px] font-mono text-gray-400 uppercase tracking-widest">Email</label>
-                                    <div className="relative group">
-                                        <input
-                                            type="email"
-                                            value={formData.email}
-                                            onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                                            required
-                                            className="w-full bg-transparent border-b border-black/10 py-4 text-2xl font-serif italic text-black focus:outline-none transition-colors peer"
-                                            placeholder="hello@world.com"
-                                        />
-                                        <span className="absolute bottom-0 left-0 w-full h-[1px] bg-black transform scale-x-0 peer-focus:scale-x-100 transition-transform duration-500 origin-left" />
-                                    </div>
+                                <div className="relative group pt-6">
+                                    <input
+                                        type="email"
+                                        id="email"
+                                        value={formData.email}
+                                        onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                                        required
+                                        className="w-full bg-transparent border-b border-black/10 py-4 text-2xl font-serif text-black focus:outline-none transition-colors peer placeholder-transparent"
+                                        placeholder="Email"
+                                    />
+                                    <label htmlFor="email" className="absolute left-0 top-10 text-2xl font-serif text-gray-400 transition-all duration-300 peer-focus:top-0 peer-focus:text-[10px] peer-focus:font-mono peer-focus:uppercase peer-focus:tracking-widest peer-focus:text-black peer-valid:top-0 peer-valid:text-[10px] peer-valid:font-mono peer-valid:uppercase peer-valid:tracking-widest peer-valid:text-black pointer-events-none">
+                                        Email
+                                    </label>
+                                    <span className="absolute bottom-0 left-0 w-full h-[1px] bg-black transform scale-x-0 peer-focus:scale-x-100 transition-transform duration-500 origin-left" />
                                 </div>
                             </div>
 
-                            <div className="space-y-4">
-                                <label className="text-[10px] font-mono text-gray-400 uppercase tracking-widest">Message</label>
-                                <div className="relative group">
-                                    <textarea
-                                        value={formData.message}
-                                        onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                                        required
-                                        rows={1}
-                                        className="w-full bg-transparent border-b border-black/10 py-4 text-2xl font-serif italic text-black focus:outline-none transition-colors resize-none overflow-hidden peer"
-                                        placeholder="Tell me about your project..."
-                                        style={{ height: 'auto', minHeight: '60px' }}
-                                        onInput={(e) => {
-                                            const target = e.target as HTMLTextAreaElement;
-                                            target.style.height = 'auto';
-                                            target.style.height = `${target.scrollHeight}px`;
-                                        }}
-                                    />
-                                    <span className="absolute bottom-0 left-0 w-full h-[1px] bg-black transform scale-x-0 peer-focus:scale-x-100 transition-transform duration-500 origin-left" />
-                                </div>
+                            <div className="relative group pt-6">
+                                <textarea
+                                    id="message"
+                                    value={formData.message}
+                                    onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                                    required
+                                    rows={1}
+                                    className="w-full bg-transparent border-b border-black/10 py-4 text-2xl font-serif text-black focus:outline-none transition-colors resize-none overflow-hidden peer placeholder-transparent"
+                                    placeholder="Message"
+                                    style={{ height: 'auto', minHeight: '60px' }}
+                                    onInput={(e) => {
+                                        const target = e.target as HTMLTextAreaElement;
+                                        target.style.height = 'auto';
+                                        target.style.height = `${target.scrollHeight}px`;
+                                    }}
+                                />
+                                <label htmlFor="message" className="absolute left-0 top-10 text-2xl font-serif text-gray-400 transition-all duration-300 peer-focus:top-0 peer-focus:text-[10px] peer-focus:font-mono peer-focus:uppercase peer-focus:tracking-widest peer-focus:text-black peer-valid:top-0 peer-valid:text-[10px] peer-valid:font-mono peer-valid:uppercase peer-valid:tracking-widest peer-valid:text-black pointer-events-none">
+                                    Message
+                                </label>
+                                <span className="absolute bottom-0 left-0 w-full h-[1px] bg-black transform scale-x-0 peer-focus:scale-x-100 transition-transform duration-500 origin-left" />
                             </div>
 
                             <div className="pt-8">

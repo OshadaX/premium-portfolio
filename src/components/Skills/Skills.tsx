@@ -64,21 +64,19 @@ const Skills = () => {
                             exit={{ opacity: 0, y: -10 }}
                             transition={{ duration: 0.3 }}
                         >
-                            <div className="space-y-6">
+                            <div className="flex flex-wrap gap-4 md:gap-6">
                                 {skills[activeTab].map((tech, i) => (
                                     <motion.div
                                         key={tech}
-                                        initial={{ opacity: 0, x: -10 }}
-                                        animate={{ opacity: 1, x: 0 }}
+                                        initial={{ opacity: 0, scale: 0.9 }}
+                                        animate={{ opacity: 1, scale: 1 }}
                                         transition={{ duration: 0.3, delay: i * 0.05 }}
-                                        className="group flex items-center justify-between border-b border-black/10 pb-4 hover:border-black/40 transition-colors duration-300"
+                                        className="group flex items-center gap-3 bg-white border border-black/10 rounded-full px-6 py-3 md:px-8 md:py-4 shadow-sm hover:shadow-md hover:border-black/30 transition-all duration-300 cursor-default"
                                     >
-                                        <span className="text-2xl md:text-4xl font-sans text-gray-500 group-hover:text-black transition-colors duration-300">
+                                        <span className="w-2 h-2 rounded-full bg-black/20 group-hover:bg-black transition-colors duration-300" />
+                                        <span className="text-lg md:text-xl font-sans text-gray-600 group-hover:text-black transition-colors duration-300">
                                             {tech}
                                         </span>
-                                        <motion.span
-                                            className="w-3 h-3 rounded-full bg-black opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                                        />
                                     </motion.div>
                                 ))}
                             </div>
