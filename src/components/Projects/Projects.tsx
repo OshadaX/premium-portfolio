@@ -57,51 +57,65 @@ const Projects = () => {
                     layout
                     className="grid grid-cols-1 md:grid-cols-3 gap-4"
                 >
-                    <AnimatePresence mode="popLayout">
-                        {filteredProjects.slice(0, 3).map((project, idx) => (
-                            // Limit to 3 items to ensuring fitting
+                    <AnimatePresence mode="popLayout" initial={false}>
+                        {filteredProjects.slice(0, 4).map((project, idx) => (
+                            // Limit to 4 items for a better grid appearance
                             <Link
                                 key={project.title}
                                 to={`/project/${project.title.toLowerCase().replace(/\s+/g, '-')}`}
-                                className={`group relative rounded-3xl overflow-hidden bg-gray-100 cursor-pointer h-[300px] md:h-[400px] block ${project.featured ? 'md:col-span-2' : 'md:col-span-1'}`}
+                                className={`group relative rounded-[2rem] md:rounded-[2.5rem] overflow-hidden bg-gray-100 cursor-pointer h-[350px] md:h-[450px] block ${project.featured ? 'md:col-span-2' : 'md:col-span-1'}`}
                             >
                                 <motion.div
-                                    initial={{ opacity: 0, scale: 0.9 }}
-                                    animate={{ opacity: 1, scale: 1 }}
-                                    exit={{ opacity: 0, scale: 0.9 }}
-                                    transition={{ duration: 0.5, delay: idx * 0.1 }}
+                                    layout
+                                    initial={{ opacity: 0, y: 30, filter: 'blur(10px)' }}
+                                    animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+                                    exit={{ opacity: 0, y: -30, filter: 'blur(10px)' }}
+                                    transition={{ duration: 0.6, delay: idx * 0.08, ease: [0.25, 0.46, 0.45, 0.94] }}
                                     className="w-full h-full"
                                 >
                                     {/* Background Image */}
-                                    <div className="absolute inset-0 w-full h-full overflow-hidden rounded-3xl">
-                                        <div className="absolute inset-0 bg-gray-200 animate-pulse z-0" />
+                                    <div className="absolute inset-0 w-full h-full overflow-hidden">
+                                        <div className="absolute inset-0 bg-black/5 animate-pulse z-0" />
                                         <motion.img
                                             layoutId={`image-${project.title}`}
                                             src={`${project.image}?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2`}
                                             alt={project.title}
-                                            className="w-full h-full object-cover transition-transform duration-1000 ease-out group-hover:scale-110 grayscale group-hover:grayscale-0"
+                                            className="w-full h-full object-cover transition-transform duration-1000 ease-out group-hover:scale-105"
                                         />
                                         {/* Gradient Overlay */}
-                                        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-black/10 opacity-70 transition-opacity duration-500 group-hover:opacity-90" />
+                                        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-60 transition-opacity duration-500 group-hover:opacity-80" />
                                     </div>
 
                                     {/* Content Overlay */}
-                                    <div className="absolute bottom-0 left-0 w-full p-8 flex flex-col items-start justify-end z-10">
-                                        <motion.span
-                                            layoutId={`tech-${project.title}`}
-                                            className="inline-block px-3 py-1 mb-2 text-[10px] font-mono tracking-widest text-[#1a1a1a] bg-white/90 backdrop-blur-sm rounded-full"
-                                        >
-                                            {project.tech}
-                                        </motion.span>
-                                        <motion.h3
-                                            layoutId={`title-${project.title}`}
-                                            className="text-2xl font-serif text-white mb-2 leading-tight"
-                                        >
-                                            {project.title}
-                                        </motion.h3>
-                                        <p className="text-white/70 font-sans text-base max-w-[90%] opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-500 delay-100">
-                                            {project.description}
-                                        </p>
+                                    <div className="absolute bottom-0 left-0 w-full p-6 md:p-8 flex flex-col items-start justify-end z-10">
+
+                                        <div className="w-full transform translate-y-4 group-hover:translate-y-0 transition-all duration-500">
+                                            <motion.span
+                                                layoutId={`tech-${project.title}`}
+                                                className="inline-block px-4 py-1.5 mb-4 text-[10px] md:text-xs font-mono tracking-widest text-[#1a1a1a] bg-white/90 backdrop-blur-md rounded-full shadow-sm"
+                                            >
+                                                {project.tech}
+                                            </motion.span>
+
+                                            <div className="bg-black/20 backdrop-blur-md border border-white/10 p-6 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-75 shadow-2xl">
+                                                <motion.h3
+                                                    layoutId={`title-${project.title}`}
+                                                    className="text-2xl md:text-3xl font-serif text-white mb-2 leading-tight"
+                                                >
+                                                    {project.title}
+                                                </motion.h3>
+                                                <p className="text-white/80 font-sans text-sm md:text-base leading-relaxed line-clamp-2">
+                                                    {project.description}
+                                                </p>
+                                            </div>
+                                        </div>
+
+                                        {/* Initial Title (visible before hover) */}
+                                        <div className="absolute bottom-6 md:bottom-8 left-6 md:left-8 group-hover:opacity-0 transition-opacity duration-300">
+                                            <h3 className="text-2xl md:text-3xl font-serif text-white leading-tight drop-shadow-md">
+                                                {project.title}
+                                            </h3>
+                                        </div>
                                     </div>
                                 </motion.div>
                             </Link>
