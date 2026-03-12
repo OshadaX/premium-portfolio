@@ -139,14 +139,30 @@ const Hero: React.FC = () => {
                     initial={{ opacity: 0, scale: 0.98 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 1.2, delay: 1.4, ease: [0.25, 0.46, 0.45, 0.94] }}
-                    className="relative w-full flex-grow min-h-[400px] bg-gray-900 overflow-hidden rounded-sm group"
+                    className="relative w-full flex-grow min-h-[400px] bg-gray-900 overflow-hidden rounded-[2rem] md:rounded-[3rem] group"
                 >
                     <div
-                        className="w-full h-full relative transition-transform duration-700 group-hover:scale-105"
+                        className="w-full h-full relative transition-transform duration-1000 group-hover:scale-105"
                         style={{ background: 'url(https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=2564&auto=format&fit=crop) center/cover no-repeat' }}
                     >
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent opacity-80" />
                     </div>
+
+                    {/* Floating Glassmorphism Badge */}
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.8, delay: 2.0 }}
+                        className="absolute bottom-8 right-8 md:bottom-12 md:right-12 bg-white/10 backdrop-blur-md border border-white/20 p-4 md:p-6 rounded-2xl md:rounded-3xl shadow-2xl max-w-[200px] md:max-w-[280px]"
+                    >
+                        <div className="flex items-center gap-3 mb-2">
+                            <span className="relative flex h-3 w-3">
+                                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                                <span className="relative inline-flex rounded-full h-3 w-3 bg-emerald-500"></span>
+                            </span>
+                            <p className="text-white text-xs md:text-sm font-sans font-medium">Currently taking new projects for 2026</p>
+                        </div>
+                    </motion.div>
                 </motion.div>
 
                 {/* Scroll Indicator */}

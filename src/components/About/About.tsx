@@ -21,8 +21,12 @@ const About = () => {
                 <p className="text-lg font-sans leading-relaxed text-gray-500">
                     I enjoy working across the stack, combining thoughtful UI with reliable backend logic. Currently, I’m focused on improving my skills in modern JavaScript frameworks and collaborative development workflows.
                 </p>
-                <div className="pt-4">
-                    <span className="text-sm font-mono text-gray-400 uppercase tracking-widest">
+                <div className="pt-6 mt-4 border-t border-black/5 flex items-center gap-3">
+                    <span className="relative flex h-2.5 w-2.5">
+                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                        <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
+                    </span>
+                    <span className="text-sm font-mono text-gray-500 uppercase tracking-widest">
                         Based in Sri Lanka · Open to opportunities
                     </span>
                 </div>
@@ -30,30 +34,31 @@ const About = () => {
         ),
         personal: (
             <div className="space-y-8 max-w-2xl">
-                <p className="text-xl font-serif italic text-black/90 leading-relaxed">
+                <blockquote className="text-xl md:text-2xl font-serif italic text-black/90 leading-relaxed border-l-2 border-black/20 pl-6">
                     "I started learning web development out of curiosity and quickly became interested in how design and code work together."
-                </p>
-                <p className="text-lg font-sans leading-relaxed text-[#1a1a1a]/70">
+                </blockquote>
+                <p className="text-lg font-sans leading-relaxed text-gray-500">
                     Over time, I moved from writing simple features to understanding larger systems, team workflows, and responsibility. Working as an intern helped me learn not just how to code, but how to collaborate, review code, and think long-term about software quality.
                 </p>
-                <div className="pt-4 border-t border-black/5">
-                    <span className="text-sm font-mono text-gray-400 uppercase tracking-widest">
-                        Values: Clarity · Consistency · Improvement
-                    </span>
+                <div className="pt-6 mt-4 border-t border-black/5 flex gap-2">
+                    {['Clarity', 'Consistency', 'Improvement'].map(value => (
+                        <span key={value} className="px-3 py-1 bg-black/5 text-black/60 rounded-full text-xs font-mono tracking-widest">
+                            {value}
+                        </span>
+                    ))}
                 </div>
             </div>
         ),
         connect: (
             <div className="space-y-8">
-                <p className="text-xl font-sans leading-relaxed text-black/90">
+                <p className="text-xl md:text-2xl font-serif leading-relaxed text-black/90">
                     I’m always interested in discussing web development, design systems, and early-stage products.
                 </p>
                 <p className="text-lg font-sans leading-relaxed text-gray-500">
                     If you’d like to collaborate, talk about a project, or just connect, feel free to reach out.
                 </p>
-                <div className="flex gap-8 pt-4">
+                <div className="flex flex-wrap gap-4 pt-6 mt-4 border-t border-black/5">
                     {[
-                        // { name: 'Email', href: 'mailto:hello@oshadanavindra.com' }, // Placeholder email
                         { name: 'GitHub', href: 'https://github.com/OshadaX' },
                         { name: 'LinkedIn', href: 'https://www.linkedin.com/in/oshada-navindra/' }
                     ].map((link) => (
@@ -62,9 +67,9 @@ const About = () => {
                             href={link.href}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="text-black font-medium hover:text-gray-500 transition-colors duration-300 border-b border-black/20 hover:border-black"
+                            className="group relative flex items-center gap-2 px-6 py-3 bg-black/5 hover:bg-black text-black hover:text-white rounded-full transition-all duration-300 font-sans font-medium"
                         >
-                            {link.name}
+                            <span>{link.name}</span>
                         </a>
                     ))}
                 </div>
@@ -89,42 +94,50 @@ const About = () => {
                     <div className="w-full h-[1px] bg-black/10 mt-8" />
                 </motion.div>
 
-                <div className="grid grid-cols-1 md:grid-cols-[1fr_2fr] gap-12 md:gap-24">
-                    {/* Navigation Tabs */}
-                    <div className="flex flex-col items-start gap-6 border-l border-black/10 pl-8 md:pl-12">
+                <div className="flex flex-col lg:flex-row gap-12 lg:gap-24 items-start">
+                    {/* Navigation Tabs - Converted to pills */}
+                    <div className="flex flex-row flex-wrap lg:flex-col gap-3 lg:gap-4 w-full lg:w-48 shrink-0">
                         {tabs.map((tab) => (
                             <button
                                 key={tab.id}
                                 onClick={() => setActiveTab(tab.id)}
-                                className="group relative text-left py-1"
+                                className={`relative px-6 py-3 rounded-full text-left transition-all duration-300 overflow-hidden group border ${activeTab === tab.id
+                                        ? 'border-transparent bg-black text-white shadow-md'
+                                        : 'border-black/10 bg-white/50 text-gray-500 hover:border-black/30 hover:bg-white'
+                                    }`}
                             >
-                                <span className={`text-xl md:text-2xl font-serif transition-all duration-300 ${activeTab === tab.id ? 'text-[#1a1a1a] translate-x-4' : 'text-gray-400 hover:text-[#1a1a1a]/60'}`}>
+                                <span className="relative z-10 text-lg md:text-xl font-serif">
                                     {tab.label}
                                 </span>
                                 {activeTab === tab.id && (
-                                    <motion.span
-                                        layoutId="activeAboutTabMarker"
-                                        className="absolute top-1/2 -left-6 -translate-y-1/2 w-2 h-2 bg-[#1a1a1a] rounded-full"
-                                        transition={{ type: "spring", stiffness: 300, damping: 25 }}
+                                    <motion.div
+                                        layoutId="activeAboutTabBg"
+                                        className="absolute inset-0 bg-black z-0"
+                                        transition={{ type: "spring", stiffness: 300, damping: 30 }}
                                     />
                                 )}
                             </button>
                         ))}
                     </div>
 
-                    {/* Dynamic Content */}
-                    <div className="min-h-[300px]">
-                        <AnimatePresence mode="wait">
-                            <motion.div
-                                key={activeTab}
-                                initial={{ opacity: 0, y: 10 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                exit={{ opacity: 0, y: -10 }}
-                                transition={{ duration: 0.4, ease: "easeOut" }}
-                            >
-                                {content[activeTab]}
-                            </motion.div>
-                        </AnimatePresence>
+                    {/* Dynamic Content - Glassmorphic Container */}
+                    <div className="w-full relative">
+                        {/* Decorative background element */}
+                        <div className="absolute top-0 right-0 w-64 h-64 bg-gray-200/50 rounded-full blur-3xl -z-10 mix-blend-multiply opacity-50 translate-x-1/2 -translate-y-1/2" />
+
+                        <div className="bg-white/80 backdrop-blur-md border border-black/5 rounded-[2rem] p-8 md:p-12 shadow-xl shadow-black/[0.02] min-h-[350px]">
+                            <AnimatePresence mode="wait">
+                                <motion.div
+                                    key={activeTab}
+                                    initial={{ opacity: 0, y: 10, filter: 'blur(5px)' }}
+                                    animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+                                    exit={{ opacity: 0, y: -10, filter: 'blur(5px)' }}
+                                    transition={{ duration: 0.4, ease: "easeOut" }}
+                                >
+                                    {content[activeTab]}
+                                </motion.div>
+                            </AnimatePresence>
+                        </div>
                     </div>
                 </div>
             </div>

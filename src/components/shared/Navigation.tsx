@@ -31,13 +31,13 @@ export default function Navigation() {
                     initial={{ y: 100, opacity: 0 }}
                     animate={{ y: 0, opacity: 1 }}
                     transition={{ duration: 0.8, delay: 0.8, type: "spring", stiffness: 260, damping: 20 }}
-                    className="flex items-center gap-2 px-2 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 shadow-lg pointer-events-auto"
+                    className="flex items-center gap-1 md:gap-2 px-2 py-2 rounded-full bg-black/80 backdrop-blur-xl border border-white/10 shadow-2xl pointer-events-auto"
                 >
                     {navLinks.map((link) => (
-                        <div key={link.name} className="relative">
+                        <div key={link.name} className="relative group">
                             <a
                                 href={`#${link.id}`}
-                                className="relative block px-6 py-2 text-sm font-medium text-[#1a1a1a] hover:text-black transition-colors duration-300 rounded-full hover:bg-white/20"
+                                className="relative block px-4 md:px-6 py-2 m-0.5 text-xs md:text-sm font-medium text-white/70 hover:text-white transition-all duration-300 rounded-full hover:bg-white/10"
                             >
                                 {link.name}
                             </a>

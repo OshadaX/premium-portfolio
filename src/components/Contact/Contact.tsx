@@ -54,19 +54,19 @@ const Contact = () => {
                         whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.8, delay: 0.2 }}
-                        className="space-y-12"
+                        className="space-y-16"
                     >
                         <div>
-                            <h3 className="text-3xl font-serif font-medium text-black mb-6">
+                            <h3 className="text-4xl md:text-5xl font-serif font-medium text-black mb-6 leading-tight">
                                 Let's build<br />something new.
                             </h3>
-                            <p className="text-lg text-black/60 font-sans leading-relaxed max-w-xs">
-                                Have a project in mind or just want to say hi? Feel free to reach out.
+                            <p className="text-lg text-gray-500 font-sans leading-relaxed max-w-sm">
+                                Have a project in mind, a question, or just want to say hi? I'm always open to discussing new opportunities.
                             </p>
                         </div>
 
-                        <div className="space-y-4">
-                            <span className="text-xs font-mono text-gray-400 uppercase tracking-widest block">Connection</span>
+                        <div className="space-y-6">
+                            <span className="text-xs font-mono text-gray-400 uppercase tracking-widest block">SOCIAL & CONTACT</span>
                             <div className="flex flex-col items-start gap-4">
                                 {socials.map((social) => (
                                     <a
@@ -74,12 +74,13 @@ const Contact = () => {
                                         href={social.href}
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        className="group relative inline-flex items-center text-lg font-sans text-black overflow-hidden"
+                                        className="group relative inline-flex items-center text-xl font-sans text-gray-800 overflow-hidden py-1"
                                     >
-                                        <span className="relative z-10 group-hover:text-gray-500 transition-colors duration-300">
+                                        <span className="relative z-10 group-hover:text-black transition-colors duration-300">
                                             {social.label}
                                         </span>
-                                        <ArrowUpRight size={18} className="ml-2 text-black/20 group-hover:text-black transition-all duration-300 transform group-hover:-translate-y-1 group-hover:translate-x-1" />
+                                        <ArrowUpRight size={20} strokeWidth={1.5} className="ml-3 text-black/20 group-hover:text-black transition-all duration-300 transform group-hover:-translate-y-1 group-hover:translate-x-1" />
+                                        <div className="absolute bottom-0 left-0 w-full h-[1px] bg-black transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
                                     </a>
                                 ))}
                             </div>
@@ -92,9 +93,10 @@ const Contact = () => {
                         whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.8, delay: 0.3 }}
+                        className="bg-white p-8 md:p-12 rounded-[2rem] border border-black/5 shadow-sm"
                     >
-                        <form onSubmit={handleSubmit} className="space-y-12">
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+                        <form onSubmit={handleSubmit} className="space-y-10">
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
                                 <div className="relative group pt-6">
                                     <input
                                         type="text"
@@ -149,20 +151,25 @@ const Contact = () => {
                                 <span className="absolute bottom-0 left-0 w-full h-[1px] bg-black transform scale-x-0 peer-focus:scale-x-100 transition-transform duration-500 origin-left" />
                             </div>
 
-                            <div className="pt-8">
+                            <div className="pt-6">
                                 <button
                                     type="submit"
                                     disabled={status !== 'idle'}
-                                    className="group relative inline-flex items-center gap-4 text-3xl md:text-5xl font-serif text-black hover:text-gray-400 transition-colors duration-500 disabled:opacity-50"
+                                    className="group relative inline-flex items-center justify-center gap-4 w-full md:w-auto px-10 py-5 bg-black text-white rounded-full font-sans text-lg md:text-xl font-medium overflow-hidden transition-transform duration-300 hover:scale-[1.02] active:scale-95 disabled:opacity-50 disabled:hover:scale-100"
                                 >
-                                    <span>
+                                    <div className="absolute inset-0 w-full h-full bg-white/20 transform translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out" />
+                                    <span className="relative z-10">
                                         {status === 'idle' && 'Send Inquiry'}
                                         {status === 'sending' && 'Sending...'}
-                                        {status === 'sent' && 'Sent.'}
+                                        {status === 'sent' && 'Sent Successfully'}
                                     </span>
-                                    <div className="flex items-center justify-center w-12 h-12 md:w-16 md:h-16 rounded-full border border-black/10 group-hover:border-black/40 transition-colors duration-500">
-                                        <ArrowUpRight size={24} className="transition-transform duration-500 group-hover:-translate-y-1 group-hover:translate-x-1" />
-                                    </div>
+                                    <motion.div
+                                        className="relative z-10 flex items-center justify-center"
+                                        animate={{ rotate: status === 'sent' ? 360 : 0, scale: status === 'sending' ? 0.8 : 1 }}
+                                        transition={{ duration: 0.5 }}
+                                    >
+                                        <ArrowUpRight size={22} className="transition-transform duration-300 group-hover:-translate-y-1 group-hover:translate-x-1" />
+                                    </motion.div>
                                 </button>
                             </div>
                         </form>
@@ -175,7 +182,7 @@ const Contact = () => {
                     whileInView={{ opacity: 1 }}
                     viewport={{ once: true }}
                     transition={{ duration: 1, delay: 0.5 }}
-                    className="mt-40 pt-12 border-t border-black/5 flex flex-col md:flex-row justify-between items-center gap-8"
+                    className="mt-32 pt-12 border-t border-black/10 flex flex-col md:flex-row justify-between items-center gap-8"
                 >
                     <div className="text-[10px] font-mono text-gray-400 uppercase tracking-widest">
                         © 2026 Digital Playground
